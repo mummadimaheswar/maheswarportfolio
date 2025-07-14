@@ -13,6 +13,13 @@ interface Achievement {
 
 const achievements: Achievement[] = [
   {
+    title: "AI Research Intern at Coding Jr",
+    date: "June 2025",
+    description: "AI research internship focusing on cutting-edge machine learning techniques and model development.",
+    icon: <Briefcase size={18} />,
+    tags: ["AI Research", "Internship", "Machine Learning"]
+  },
+  {
     title: "AI Project: Image Captioning System",
     date: "Dec 2023",
     description: "Developed an AI-powered image captioning system using deep learning models with a user-friendly Gradio interface.",
