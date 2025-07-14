@@ -1,7 +1,7 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Code, Terminal, Figma, GitBranch, ArrowRight } from 'lucide-react';
+import { Code, Terminal, GitBranch, ArrowRight } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 
 interface Skill {
@@ -33,7 +33,6 @@ const skillCategories: SkillCategory[] = [
     </svg>,
     skills: [
       { name: "TensorFlow", level: 20 },
-      { name: "PyTorch", level: 50 },
       { name: "scikit-learn", level: 90 },
     ],
   },
@@ -45,15 +44,6 @@ const skillCategories: SkillCategory[] = [
       { name: "VS Code", level: 90 },
       { name: "Git", level: 75, icon: <GitBranch className="w-4 h-4" /> },
       { name: "Docker", level: 70, icon: <Code className="w-4 h-4" /> },
-    ],
-  },
-  {
-    title: "UI/UX & Design",
-    icon: <Figma className="w-6 h-6" />,
-    skills: [
-      { name: "Figma", level: 80 },
-      { name: "Canva", level: 85 },
-      { name: "Web Design", level: 75 },
     ],
   },
   {
