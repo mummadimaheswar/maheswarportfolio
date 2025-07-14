@@ -20,22 +20,22 @@ const achievements: Achievement[] = [
     tags: ["AI Research", "Internship", "Machine Learning"]
   },
   {
-    title: "AI Project: Image Captioning System",
-    date: "Dec 2023",
-    description: "Developed an AI-powered image captioning system using deep learning models with a user-friendly Gradio interface.",
+    title: "Generative AI Image Creation System",
+    date: "Dec 2024",
+    description: "Developed a generative AI system for creating and editing images using advanced deep learning models with an intuitive user interface.",
     icon: <Award size={18} />,
-    tags: ["AI", "Deep Learning", "Python"]
+    tags: ["Generative AI", "Deep Learning", "Python"]
   },
   {
     title: "Sentiment Analysis Project",
-    date: "Oct 2023",
+    date: "Oct 2024",
     description: "Built a machine learning model to analyze text sentiment with high accuracy, trained on diverse datasets.",
     icon: <Star size={18} />,
     tags: ["ML", "NLP", "Data Science"]
   },
   {
     title: "Personal Data Chatbot",
-    date: "Jul 2023",
+    date: "Jul 2025",
     description: "Created a chatbot that integrates with Google Sheets to provide personalized responses based on user data.",
     icon: <Award size={18} />,
     tags: ["ChatGPT API", "Integration", "JavaScript"]
