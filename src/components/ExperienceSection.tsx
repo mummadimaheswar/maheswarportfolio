@@ -20,9 +20,9 @@ const achievements: Achievement[] = [
     tags: ["AI Research", "Internship", "Machine Learning"]
   },
   {
-    title: "Generative AI Image Creation System",
+    title: "Image Captioning with Generative AI",
     date: "Dec 2024",
-    description: "Developed a generative AI system for creating and editing images using advanced deep learning models with an intuitive user interface.",
+    description: "Developed an AI-powered image captioning system using generative AI models with an intuitive user interface.",
     icon: <Award size={18} />,
     tags: ["Generative AI", "Deep Learning", "Python"]
   },
