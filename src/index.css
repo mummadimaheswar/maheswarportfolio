@@ -1,0 +1,251 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 264 87% 73%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 196 83% 48%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 264 87% 73%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 264 87% 73%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217 19% 27%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 19% 27%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 196 83% 48%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 19% 27%;
+    --input: 217 19% 27%;
+    --ring: 264 87% 73%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-inter;
+  }
+}
+
+/* Particle background effect */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Neural network background */
+.neural-bg {
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(155, 135, 245, 0.2) 0%, transparent 8%),
+    radial-gradient(circle at 75% 40%, rgba(14, 165, 233, 0.2) 0%, transparent 10%),
+    radial-gradient(circle at 40% 80%, rgba(57, 255, 20, 0.15) 0%, transparent 12%);
+  background-size: 200% 200%;
+  animation: network-flow 10s linear infinite;
+}
+
+/* Custom animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typeWriter {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* Timeline styles */
+.timeline-item {
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: calc(100% + 1rem);
+  background: hsl(var(--primary) / 0.5);
+  left: 8px;
+  top: 8px;
+}
+
+.timeline-item:last-child::before {
+  height: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: hsl(var(--primary));
+  left: 0;
+  top: 0;
+  transform: translateX(-8px);
+  z-index: 10;
+  box-shadow: 0 0 10px 2px rgba(155, 135, 245, 0.7);
+}
+
+/* Glowing elements */
+.glow-effect {
+  box-shadow: 0 0 10px 2px rgba(155, 135, 245, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-effect:hover {
+  box-shadow: 0 0 20px 5px rgba(155, 135, 245, 0.5);
+}
+
+.glow-teal {
+  box-shadow: 0 0 10px 2px rgba(14, 165, 233, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-teal:hover {
+  box-shadow: 0 0 20px 5px rgba(14, 165, 233, 0.5);
+}
+
+.glow-green {
+  box-shadow: 0 0 10px 2px rgba(57, 255, 20, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-green:hover {
+  box-shadow: 0 0 20px 5px rgba(57, 255, 20, 0.4);
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+.typing-effect {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typeWriter 2s steps(40, end);
+}
+
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px -15px rgba(155, 135, 245, 0.4);
+  border-color: rgba(155, 135, 245, 0.3);
+}
+
+.section-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section-fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Skill cloud styles */
+.skill-cloud {
+  perspective: 1000px;
+}
+
+.skill-item {
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+}
+
+/* For the contact glow effect */
+.contact-icon {
+  position: relative;
+}
+
+.contact-icon::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+
+.contact-icon:hover::before {
+  background: radial-gradient(circle, rgba(155, 135, 245, 0.3) 0%, transparent 70%);
+}
+
+/* Cyberpunk-specific styles */
+.cyberpunk-border {
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+
+.cyberpunk-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  background: linear-gradient(90deg, #9b87f5, #0EA5E9, #39FF14) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}
+
+/* GSAP scroll trigger marker debug (remove in production) */
+.gsap-marker-scroller-start,
+.gsap-marker-scroller-end,
+.gsap-marker-start,
+.gsap-marker-end {
+  display: none !important;
+}
