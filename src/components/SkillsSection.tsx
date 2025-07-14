@@ -32,6 +32,10 @@ const skillCategories: SkillCategory[] = [
       <path d="M1.292 5.856L11.54 0v24l-10.25-5.9V5.857zm10.25 0L21.786 0v17.143l-10.244 6.9V5.857z" />
     </svg>,
     skills: [
+      { name: "Artificial Intelligence", level: 85 },
+      { name: "Machine Learning", level: 90 },
+      { name: "Deep Learning", level: 80 },
+      { name: "ANN", level: 75 },
       { name: "TensorFlow", level: 20 },
       { name: "scikit-learn", level: 90 },
     ],
