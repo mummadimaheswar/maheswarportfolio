@@ -1,8 +1,5 @@
 
-// Import A-Frame first to avoid "AFRAME is not defined" errors
-import 'aframe';
 import { useEffect, useRef, useState } from 'react';
-import { ForceGraph2D } from 'react-force-graph';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 
@@ -35,10 +32,6 @@ const initialData: GraphData = {
     { id: 'cat', name: 'Cat', group: 2, val: 10 },
     { id: 'eagle', name: 'Eagle', group: 3, val: 10 },
     { id: 'sparrow', name: 'Sparrow', group: 3, val: 10 },
-    { id: 'fido', name: 'Fido', group: 2, val: 5 },
-    { id: 'fluffy', name: 'Fluffy', group: 2, val: 5 },
-    { id: 'hunter', name: 'Hunter', group: 3, val: 5 },
-    { id: 'tweet', name: 'Tweet', group: 3, val: 5 },
   ],
   links: [
     { source: 'mammal', target: 'animal', type: 'is-a' },
@@ -47,10 +40,6 @@ const initialData: GraphData = {
     { source: 'cat', target: 'mammal', type: 'is-a' },
     { source: 'eagle', target: 'bird', type: 'is-a' },
     { source: 'sparrow', target: 'bird', type: 'is-a' },
-    { source: 'fido', target: 'dog', type: 'instance-of' },
-    { source: 'fluffy', target: 'cat', type: 'instance-of' },
-    { source: 'hunter', target: 'eagle', type: 'instance-of' },
-    { source: 'tweet', target: 'sparrow', type: 'instance-of' },
   ]
 };
 
@@ -59,158 +48,151 @@ const aiKnowledgeData: GraphData = {
     { id: 'ai', name: 'Artificial Intelligence', group: 1, val: 25 },
     { id: 'ml', name: 'Machine Learning', group: 1, val: 20 },
     { id: 'dl', name: 'Deep Learning', group: 1, val: 18 },
-    { id: 'krr', name: 'Knowledge Representation', group: 2, val: 20 },
-    { id: 'sup', name: 'Supervised Learning', group: 3, val: 15 },
-    { id: 'unsup', name: 'Unsupervised Learning', group: 3, val: 15 },
-    { id: 'rl', name: 'Reinforcement Learning', group: 3, val: 15 },
-    { id: 'cnn', name: 'Convolutional Networks', group: 4, val: 10 },
-    { id: 'rnn', name: 'Recurrent Networks', group: 4, val: 10 },
-    { id: 'logic', name: 'Logical Representation', group: 5, val: 12 },
-    { id: 'frames', name: 'Frames', group: 5, val: 12 },
-    { id: 'semantic', name: 'Semantic Networks', group: 5, val: 12 },
+    { id: 'nlp', name: 'Natural Language Processing', group: 2, val: 15 },
+    { id: 'cv', name: 'Computer Vision', group: 2, val: 15 },
+    { id: 'nn', name: 'Neural Networks', group: 3, val: 12 },
+    { id: 'tf', name: 'TensorFlow', group: 4, val: 10 },
+    { id: 'sklearn', name: 'Scikit-learn', group: 4, val: 10 },
   ],
   links: [
     { source: 'ml', target: 'ai', type: 'is-a' },
     { source: 'dl', target: 'ml', type: 'is-a' },
-    { source: 'krr', target: 'ai', type: 'is-a' },
-    { source: 'sup', target: 'ml', type: 'is-a' },
-    { source: 'unsup', target: 'ml', type: 'is-a' },
-    { source: 'rl', target: 'ml', type: 'is-a' },
-    { source: 'cnn', target: 'dl', type: 'is-a' },
-    { source: 'rnn', target: 'dl', type: 'is-a' },
-    { source: 'logic', target: 'krr', type: 'is-a' },
-    { source: 'frames', target: 'krr', type: 'is-a' },
-    { source: 'semantic', target: 'krr', type: 'is-a' },
+    { source: 'nlp', target: 'ai', type: 'is-a' },
+    { source: 'cv', target: 'ai', type: 'is-a' },
+    { source: 'nn', target: 'dl', type: 'is-a' },
+    { source: 'tf', target: 'ml', type: 'uses' },
+    { source: 'sklearn', target: 'ml', type: 'uses' },
   ]
 };
 
 const SemanticNetworkVisual = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [graphData, setGraphData] = useState<GraphData>(initialData);
   const [selectedExample, setSelectedExample] = useState<'taxonomy' | 'ai'>('taxonomy');
-  const [hoverNode, setHoverNode] = useState<Node | null>(null);
-  
-  useEffect(() => {
-    if (containerRef.current) {
-      const updateDimensions = () => {
-        if (containerRef.current) {
-          setDimensions({
-            width: containerRef.current.offsetWidth,
-            height: 450 // Fixed height for the graph
-          });
-        }
-      };
-      
-      updateDimensions();
-      window.addEventListener('resize', updateDimensions);
-      
-      return () => {
-        window.removeEventListener('resize', updateDimensions);
-      };
-    }
-  }, []);
+  const [selectedNode, setSelectedNode] = useState<Node | null>(null);
   
   const handleExampleChange = (example: 'taxonomy' | 'ai') => {
     setSelectedExample(example);
     setGraphData(example === 'taxonomy' ? initialData : aiKnowledgeData);
+    setSelectedNode(null);
+  };
+
+  const getNodeColor = (group: number) => {
+    const colors = {
+      1: 'bg-primary/20 text-primary border-primary/30',
+      2: 'bg-secondary/20 text-secondary-foreground border-secondary/30',
+      3: 'bg-accent/20 text-accent-foreground border-accent/30',
+      4: 'bg-muted/40 text-muted-foreground border-muted/60',
+    };
+    return colors[group as keyof typeof colors] || colors[1];
+  };
+
+  const getConnectedNodes = (nodeId: string) => {
+    const connected = new Set<string>();
+    graphData.links.forEach(link => {
+      if (link.source === nodeId) connected.add(link.target);
+      if (link.target === nodeId) connected.add(link.source);
+    });
+    return connected;
   };
 
   return (
-    <div className="flex flex-col h-full" ref={containerRef}>
-      <div className="flex justify-center space-x-4 mb-4">
+    <div className="flex flex-col h-full">
+      <div className="flex justify-center space-x-4 mb-6">
         <Button 
           variant={selectedExample === 'taxonomy' ? 'default' : 'outline'} 
           onClick={() => handleExampleChange('taxonomy')}
-          className={selectedExample === 'taxonomy' ? 'bg-cyberpunk-purple hover:bg-cyberpunk-purple/80' : ''}
         >
           Animal Taxonomy
         </Button>
         <Button 
           variant={selectedExample === 'ai' ? 'default' : 'outline'} 
           onClick={() => handleExampleChange('ai')}
-          className={selectedExample === 'ai' ? 'bg-cyberpunk-purple hover:bg-cyberpunk-purple/80' : ''}
         >
           AI Knowledge Domain
         </Button>
       </div>
       
-      <div className="flex-1 bg-card/30 rounded-lg border border-muted overflow-hidden relative">
-        {dimensions.width > 0 && (
-          <ForceGraph2D
-            graphData={graphData}
-            width={dimensions.width}
-            height={dimensions.height}
-            nodeRelSize={6}
-            nodeVal={(node) => (node as Node).val}
-            nodeColor={(node) => {
-              const n = node as Node;
-              const colors = [
-                '#9b87f5', // Cyberpunk Purple
-                '#7E69AB', // Lighter Purple
-                '#0EA5E9', // Cyberpunk Teal
-                '#39FF14', // Neon Green
-                '#556B2F'  // Olive Green
-              ];
-              return colors[(n.group % colors.length)];
-            }}
-            nodeLabel={(node) => (node as Node).name}
-            linkLabel={(link) => (link as Link).type}
-            linkColor={() => '#9b87f550'}
-            linkWidth={2}
-            linkDirectionalArrowLength={6}
-            linkDirectionalArrowRelPos={1}
-            linkCurvature={0.25}
-            onNodeHover={(node) => setHoverNode(node as Node | null)}
-            cooldownTicks={100}
-            nodeCanvasObjectMode={() => 'after'}
-            nodeCanvasObject={(node, ctx, globalScale) => {
-              const n = node as Node & { x?: number; y?: number };
-              if (n.x === undefined || n.y === undefined) return;
+      <div className="flex-1 bg-card/30 rounded-lg border border-border p-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+          {graphData.nodes.map((node, index) => (
+            <motion.div
+              key={node.id}
+              className={`
+                relative p-4 rounded-lg cursor-pointer transition-all duration-300 border-2
+                ${getNodeColor(node.group)}
+                ${selectedNode?.id === node.id ? 'scale-105 shadow-lg' : 'hover:scale-102'}
+              `}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              onClick={() => setSelectedNode(selectedNode?.id === node.id ? null : node)}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <h4 className="font-semibold text-sm mb-1">{node.name}</h4>
+              <p className="text-xs opacity-70">Value: {node.val}</p>
               
-              const fontSize = 12 / globalScale;
-              ctx.font = `${fontSize}px Inter`;
-              ctx.textAlign = 'center';
-              ctx.textBaseline = 'middle';
-              ctx.fillStyle = 'white';
-              ctx.fillText(n.name, n.x, n.y + 10);
-            }}
-          />
-        )}
-        
-        {/* Info panel */}
-        {hoverNode && (
-          <motion.div 
-            className="absolute top-4 right-4 p-4 bg-card/90 backdrop-blur-sm rounded-lg border border-muted shadow-lg max-w-xs"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3 }}
+              {selectedNode?.id === node.id && (
+                <motion.div
+                  className="absolute -top-2 -right-2 w-6 h-6 bg-primary rounded-full flex items-center justify-center"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                >
+                  <span className="text-xs text-primary-foreground">✓</span>
+                </motion.div>
+              )}
+            </motion.div>
+          ))}
+        </div>
+
+        {selectedNode && (
+          <motion.div
+            className="bg-card/50 rounded-lg p-4 border border-border"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
           >
-            <h4 className="text-lg font-semibold text-foreground">{hoverNode.name}</h4>
-            <p className="text-sm text-muted-foreground mt-1">
-              Node Type: {hoverNode.group === 1 ? 'Top-level Concept' : 
-                         hoverNode.group === 2 ? 'Category' : 
-                         hoverNode.group === 3 ? 'Subcategory' : 
-                         hoverNode.group === 4 ? 'Specialized Concept' : 
-                         'Instance'}
-            </p>
-            <p className="text-sm text-muted-foreground mt-1">
-              Connections: {graphData.links.filter(link => 
-                link.source === hoverNode.id || 
-                (typeof link.source === 'object' && (link.source as Node).id === hoverNode.id) ||
-                link.target === hoverNode.id || 
-                (typeof link.target === 'object' && (link.target as Node).id === hoverNode.id)
-              ).length}
-            </p>
+            <h3 className="font-semibold mb-2">{selectedNode.name}</h3>
+            <div className="space-y-2">
+              <p className="text-sm text-muted-foreground">
+                <span className="font-medium">Type:</span> {
+                  selectedNode.group === 1 ? 'Top-level Concept' : 
+                  selectedNode.group === 2 ? 'Category' : 
+                  selectedNode.group === 3 ? 'Subcategory' : 
+                  'Specialized Concept'
+                }
+              </p>
+              <p className="text-sm text-muted-foreground">
+                <span className="font-medium">Connections:</span> {
+                  graphData.links.filter(link => 
+                    link.source === selectedNode.id || link.target === selectedNode.id
+                  ).length
+                }
+              </p>
+              <div className="flex flex-wrap gap-2 mt-3">
+                {graphData.links
+                  .filter(link => link.source === selectedNode.id || link.target === selectedNode.id)
+                  .map((link, index) => {
+                    const connectedNodeId = link.source === selectedNode.id ? link.target : link.source;
+                    const connectedNode = graphData.nodes.find(n => n.id === connectedNodeId);
+                    return (
+                      <span key={index} className="text-xs bg-muted px-2 py-1 rounded">
+                        {link.type} → {connectedNode?.name}
+                      </span>
+                    );
+                  })}
+              </div>
+            </div>
           </motion.div>
         )}
       </div>
       
-      <div className="mt-4 p-4 rounded-lg bg-card/30 border border-muted">
-        <h4 className="text-sm font-semibold mb-2">{selectedExample === 'taxonomy' ? 'Animal Taxonomy Example' : 'AI Knowledge Domain Example'}</h4>
+      <div className="mt-4 p-4 rounded-lg bg-card/30 border border-border">
+        <h4 className="text-sm font-semibold mb-2">
+          {selectedExample === 'taxonomy' ? 'Animal Taxonomy Example' : 'AI Knowledge Domain Example'}
+        </h4>
         <p className="text-xs text-muted-foreground">
           {selectedExample === 'taxonomy' 
-            ? 'This semantic network shows hierarchical relationships in animal taxonomy. Hover over nodes to see details and drag nodes to rearrange the network.'
+            ? 'This semantic network shows hierarchical relationships in animal taxonomy. Click on nodes to explore their connections.'
             : 'This semantic network represents the domain of Artificial Intelligence. Explore the relationships between different AI subfields and concepts.'
           }
         </p>
