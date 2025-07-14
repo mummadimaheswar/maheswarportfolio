@@ -27,7 +27,7 @@ const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    title: "AI/ML Frameworks",
+    title: "AI/ML",
     icon: <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
       <path d="M1.292 5.856L11.54 0v24l-10.25-5.9V5.857zm10.25 0L21.786 0v17.143l-10.244 6.9V5.857z" />
     </svg>,

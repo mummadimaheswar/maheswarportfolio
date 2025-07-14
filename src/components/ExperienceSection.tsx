@@ -35,7 +35,7 @@ const achievements: Achievement[] = [
   },
   {
     title: "Personal Data Chatbot",
-    date: "Jul 2025",
+    date: "Jul 2024",
     description: "Created a chatbot that integrates with Google Sheets to provide personalized responses based on user data.",
     icon: <Award size={18} />,
     tags: ["ChatGPT API", "Integration", "JavaScript"]
