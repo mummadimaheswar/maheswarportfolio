@@ -142,7 +142,7 @@ const ContactSection = () => {
                 </a>
                 
                 <a
-                  href="https://linkedin.com/in/"
+                  href="https://www.linkedin.com/in/mummadi-maheswar-reddy-011a032b9/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-4 rounded-lg bg-card hover:bg-card/80 transition-colors"
@@ -171,7 +171,7 @@ const ContactSection = () => {
             
             <div>
               <a
-                href="http://mummadimaheswar.github.io/my-portfolio/"
+                href="https://maheswarportfolio.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-primary hover:underline"
