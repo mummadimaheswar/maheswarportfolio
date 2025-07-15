@@ -25,7 +25,7 @@ const projects = [
   {
     id: 2,
     title: "Sentiment Analysis using ML",
-    date: "Dec 2024",
+    date: "oct 2024",
     description: "Built a machine learning model to analyze text sentiment with high accuracy across various domains.",
     longDescription: "This sentiment analysis tool uses natural language processing and machine learning to identify and extract subjective information from text data. It can classify text as positive, negative, or neutral with high accuracy. The model was trained on diverse datasets to ensure robust performance across different domains and text types.",
     tech: ["Python", "NLTK", "Scikit-learn", "BERT", "Data Visualization"],
@@ -36,7 +36,7 @@ const projects = [
   {
     id: 3,
     title: "Personal Data Chatbot",
-    date: "Nov 2024",
+    date: "july 2024",
     description: "Created a chatbot that integrates with Google Sheets to provide personalized responses based on user data.",
     longDescription: "This chatbot leverages the power of the ChatGPT API and integrates with Google Sheets to provide personalized responses based on user-specific data. The system uses advanced prompt engineering to ensure accurate and contextually relevant responses, and includes features like conversation history and data validation.",
     tech: ["JavaScript", "ChatGPT API", "Google Sheets API", "Web Development"],
@@ -46,7 +46,7 @@ const projects = [
   }
 ];
 
-const categories = ["All", "AI/ML", "Design", "Web Dev"];
+const categories = ["All", "AI/ML", "Web Dev"];
 
 const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
