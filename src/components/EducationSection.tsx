@@ -32,7 +32,7 @@ const certifications = [
   {
     title: "AI Developer",
     organization: "IBM",
-    duration: "Aug 2024 - Present",
+    duration: "Aug 2024 - feb 2025",
     description: "Learned to build AI models and implement machine learning algorithms using Python."
   },
   {
