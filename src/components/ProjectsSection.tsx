@@ -19,7 +19,7 @@ const projects = [
     longDescription: "This image captioning system uses a combination of CNN and Transformer architectures to generate descriptive captions for uploaded images. The model was trained on MS COCO dataset and fine-tuned for better accuracy. The Gradio interface makes it accessible to non-technical users who can simply upload their images and get relevant captions.",
     tech: ["Python", "PyTorch", "Transformers", "Gradio", "CNN"],
     category: "AI/ML",
-    image: "https://miro.medium.com/v2/resize:fit:1400/1*6BUJe0KjZgEGpVAp3Vl-wQ.jpeg",
+    image: "https://www.pexels.com/photo/person-using-both-computer-and-a-laptop-1181673/.png",
     github: "https://github.com/mummadimaheswar"
   },
   {
@@ -30,7 +30,7 @@ const projects = [
     longDescription: "This sentiment analysis tool uses natural language processing and machine learning to identify and extract subjective information from text data. It can classify text as positive, negative, or neutral with high accuracy. The model was trained on diverse datasets to ensure robust performance across different domains and text types.",
     tech: ["Python", "NLTK", "Scikit-learn", "BERT", "Data Visualization"],
     category: "AI/ML",
-    image: "https://vitalflux.com/wp-content/uploads/2021/10/sentiment-analysis-use-cases-examples.png",
+    image: "",
     github: "https://github.com/mummadimaheswar"
   },
   {
@@ -41,7 +41,7 @@ const projects = [
     longDescription: "This chatbot leverages the power of the ChatGPT API and integrates with Google Sheets to provide personalized responses based on user-specific data. The system uses advanced prompt engineering to ensure accurate and contextually relevant responses, and includes features like conversation history and data validation.",
     tech: ["JavaScript", "ChatGPT API", "Google Sheets API", "Web Development"],
     category: "AI/ML",
-    image: "https://cdn.hashnode.com/res/hashnode/image/upload/v1676621252349/26fc28f4-c06b-4fdc-b4fa-7b91862eff42.png",
+    image: "https://www.pexels.com/photo/high-angle-photo-of-robot-2599244/.png",
     github: "https://github.com/mummadimaheswar"
   }
 ];
