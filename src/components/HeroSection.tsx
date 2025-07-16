@@ -70,7 +70,7 @@ const HeroSection = () => {
               >
                 View Experience & Achievements
                 <ArrowRight size={18} />
-              </Button
+              </Button>
               
               <Button
                 variant="outline"
