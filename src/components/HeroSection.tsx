@@ -58,16 +58,19 @@ const HeroSection = () => {
             </p>
             
             <div className="flex justify-center gap-4 mt-8">
-              <Button 
-                variant="default" 
+              <Button
+                variant="outline"
                 className="gap-2"
-                asChild
+                onClick={() => {
+                  const Experience & AchievementsSection = document.getElementById('Experience & Achievements');
+                  if (Experience & AchievementsSection) {
+                   Experience & AchievementsSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
               >
-                <a href="" download>
-                  <Download size={18} />
-                  Download Resume
-                </a>
-              </Button>
+                View Experience & Achievements
+                <ArrowRight size={18} />
+              </Button
               
               <Button
                 variant="outline"
