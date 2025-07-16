@@ -62,9 +62,9 @@ const HeroSection = () => {
                 variant="outline"
                 className="gap-2"
                 onClick={() => {
-                  const Experience;AchievementsSection = document.getElementById('Experience; Achievements');
-                  if (Experience;AchievementsSection) {
-                   Experience AchievementsSection.scrollIntoView({ behavior: 'smooth' });
+                  const ExperienceSection = document.getElementById('Experience & Achievements');
+                  if (ExperienceSection) {
+                   ExperienceSection.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
               >
