@@ -31,14 +31,14 @@ const HeroSection = () => {
             
             <TypeWriter delay={0.5} className="inline-block">
               <h1 className="text-4xl md:text-6xl font-bold text-foreground">
-                MUMMADI MAHESWAR REDDY
+              MUMMADI MAHESWAR REDDY
               </h1>
             </TypeWriter>
           </div>
           
           <FadeUp delay={2.0}>
             <h2 className="text-xl md:text-3xl text-muted-foreground">
-              <span className="text-primary">AI Enthusiast.</span> Final Year BTech Student. Building ML Solutions with a Creative Touch.
+              <span className="text-primary">AI RESEARCHER.</span> . Building ML Models And Deep Learning model.
             </h2>
           </FadeUp>
           
@@ -63,7 +63,7 @@ const HeroSection = () => {
                 className="gap-2"
                 asChild
               >
-                <a href="/resume.pdf" download>
+                <a href="" download>
                   <Download size={18} />
                   Download Resume
                 </a>
