@@ -63,7 +63,7 @@ const HeroSection = () => {
                variant="outline"
                className="gap-2"
                 onClick={() => {
-                  window.open('YOUR_RESUME_LINK_HERE', '_blank');
+                  window.open('https://drive.google.com/file/d/1EBsPoRxfiGD0Jp9bFL3Sg-yXbV7KFzWC/view?usp=drive_link', '_blank');
                     }}
                  >
                  View Resume
