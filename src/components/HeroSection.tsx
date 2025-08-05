@@ -45,7 +45,7 @@ const HeroSection = () => {
           <ScaleIn delay={2.5}>
             <div className="w-32 h-32 md:w-48 md:h-48 mx-auto rounded-full overflow-hidden border-4 border-primary/50 glow-effect">
               <img 
-                src="" 
+                src="IMG_20230310_065541.jpg" 
                 alt="Mummadi Maheswar Reddy"
                 className="w-full h-full object-cover"
               />
@@ -58,19 +58,33 @@ const HeroSection = () => {
             </p>
             
             <div className="flex justify-center gap-4 mt-8">
-              <Button
-                variant="outline"
-                className="gap-2"
+            <div className="flex gap-4">
+            <Button
+               variant="outline"
+               className="gap-2"
                 onClick={() => {
-                  const ExperienceSection = document.getElementById('Experience & Achievements');
-                  if (ExperienceSection) {
-                   ExperienceSection.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-              >
-                View Experience & Achievements
-                <ArrowRight size={18} />
+                  window.open('YOUR_RESUME_LINK_HERE', '_blank');
+                    }}
+                 >
+                 View Resume
+                 <ArrowRight size={18} />
               </Button>
+  
+               <Button
+                 variant="outline"  
+                   className="gap-2"
+                  onClick={() => {
+             const link = document.createElement('a');
+              link.href = 'https://drive.google.com/file/d/1EBsPoRxfiGD0Jp9bFL3Sg-yXbV7KFzWC/view?usp=drive_link';
+               link.download = 'Mummadi_Maheswar_Reddy_Resume.pdf';
+                  link.click();
+               }}
+              >
+                    Download Resume
+                <Download size={18} />
+                   </Button>
+                         </div>
+
               
               <Button
                 variant="outline"
