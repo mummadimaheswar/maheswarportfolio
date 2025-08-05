@@ -38,14 +38,14 @@ const HeroSection = () => {
           
           <FadeUp delay={2.0}>
             <h2 className="text-xl md:text-3xl text-muted-foreground">
-              <span className="text-primary">AI RESEARCHER.</span> . Building ML Models And Deep Learning model.
+              <span className="text-primary">AI DEVELOPER.</span> Building ML Models And Deep Learning model.
             </h2>
           </FadeUp>
           
           <ScaleIn delay={2.5}>
             <div className="w-32 h-32 md:w-48 md:h-48 mx-auto rounded-full overflow-hidden border-4 border-primary/50 glow-effect">
               <img 
-                src="https://avatars.githubusercontent.com/u/25870426?v=4" 
+                src="" 
                 alt="Mummadi Maheswar Reddy"
                 className="w-full h-full object-cover"
               />
