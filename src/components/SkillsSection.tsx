@@ -21,9 +21,9 @@ const skillCategories: SkillCategory[] = [
     title: "Programming",
     icon: <Code className="w-6 h-6" />,
     skills: [
-      { name: "Python", level: 90 },
-      { name: "Java", level: 75 },
-      { name: "C++", level: 65 },
+      { name: "Python" },
+      { name: "Java"},
+      { name: "C++"},
     ],
   },
   {
@@ -32,10 +32,10 @@ const skillCategories: SkillCategory[] = [
       <path d="M1.292 5.856L11.54 0v24l-10.25-5.9V5.857zm10.25 0L21.786 0v17.143l-10.244 6.9V5.857z" />
     </svg>,
     skills: [
-      { name: "Artificial Intelligence", level: 85 },
-      { name: "Machine Learning", level: 90 },
-      { name: "Deep Learning", level: 80 },
-      { name: "ANN", level: 75 },
+      { name: "Artificial Intelligence" },
+      { name: "Machine Learning" },
+      { name: "Deep Learning" },
+      { name: " Artificial Neural Network"},
     ],
   },
   {
@@ -44,18 +44,18 @@ const skillCategories: SkillCategory[] = [
       <path d="M1.292 5.856L11.54 0v24l-10.25-5.9V5.857zm10.25 0L21.786 0v17.143l-10.244 6.9V5.857z" />
     </svg>,
     skills: [
-      { name: "TensorFlow", level: 60 },
-      { name: "scikit-learn", level: 90 },
+      { name: "TensorFlow" },
+      { name: "scikit-learn"},
     ],
   },
   {
     title: "Tools & Platforms",
     icon: <Terminal className="w-6 h-6" />,
     skills: [
-      { name: "Google Colab", level: 95 },
-      { name: "VS Code", level: 90 },
-      { name: "Git", level: 75, icon: <GitBranch className="w-4 h-4" /> },
-      { name: "Docker", level: 70, icon: <Code className="w-4 h-4" /> },
+      { name: "Google Colab"},
+      { name: "VS Code" },
+      { name: "Git", icon: <GitBranch className="w-4 h-4" /> },
+      { name: "Docker", icon: <Code className="w-4 h-4" /> },
     ],
   },
   {
@@ -66,9 +66,9 @@ const skillCategories: SkillCategory[] = [
       <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"></path>
     </svg>,
     skills: [
-      { name: "Communication", level: 90 },
-      { name: "Teamwork", level: 85 },
-      { name: "Time Management", level: 80 },
+      { name: "Communication" },
+      { name: "Teamwork" },
+      { name: "Time Management" },
     ],
   },
 ];
