@@ -63,7 +63,7 @@ const HeroSection = () => {
                variant="outline"
                className="gap-2"
                 onClick={() => {
-                  window.open('https://drive.google.com/file/d/1gAoh2n7AwH7draCAr_QHLixHyahnGXfJ/view?usp=sharing', '_blank');
+                  window.open('https://drive.google.com/file/d/1bbleWlN_3ljMVSyjobeqbzYrd1Jo0o5E/view?usp=sharing', '_blank');
                     }}
                  >
                  View Resume
@@ -75,7 +75,7 @@ const HeroSection = () => {
                    className="gap-2"
                   onClick={() => {
              const link = document.createElement('a');
-              link.href = 'https://drive.google.com/file/d/1gAoh2n7AwH7draCAr_QHLixHyahnGXfJ/view?usp=sharing';
+              link.href = 'https://drive.google.com/file/d/1bbleWlN_3ljMVSyjobeqbzYrd1Jo0o5E/view?usp=sharing';
                link.download = 'Mummadi_Maheswar_Reddy_Resume.pdf';
                   link.click();
                }}
