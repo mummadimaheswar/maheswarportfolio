@@ -42,14 +42,14 @@ const HeroSection = () => {
             </h2>
           </FadeUp>
           
-          <ScaleIn delay={2.5}>
+        <ScaleIn delay={2.5}>
             <div className="w-32 h-32 md:w-48 md:h-48 mx-auto rounded-full overflow-hidden border-4 border-primary/50 glow-effect">
-              <img 
-                src="https://github.com/mummadimaheswar/maheswarportfolio/blob/main/public/IMG_20230310_065541.jpg" 
-                alt="Mummadi Maheswar Reddy"
-                className="w-full h-full object-cover"
-              />
-            </div>
+        <img
+         src="/IMG_20230310_065541.jpg"
+         alt="Mummadi Maheswar Reddy"
+          className="w-full h-full object-cover"
+           />
+           </div>
           </ScaleIn>
           
           <FadeUp delay={3.0}>
