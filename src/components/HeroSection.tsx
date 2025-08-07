@@ -26,12 +26,12 @@ const HeroSection = () => {
               transition={{ duration: 1 }}
               className="text-primary text-lg"
             >
-              Hello, I'm
+              Hello,I'm
             </motion.p>
             
             <TypeWriter delay={0.5} className="inline-block">
               <h1 className="text-4xl md:text-6xl font-bold text-foreground">
-              MUMMADI MAHESWAR REDDY
+            MUMMADI MAHESWAR REDDY
               </h1>
             </TypeWriter>
           </div>
@@ -45,7 +45,7 @@ const HeroSection = () => {
           <ScaleIn delay={2.5}>
             <div className="w-32 h-32 md:w-48 md:h-48 mx-auto rounded-full overflow-hidden border-4 border-primary/50 glow-effect">
               <img 
-                src="https://drive.google.com/file/d/1Zq_Kw3IluBd_BBDi6-rnwx_AXcuAuHYW/view?usp=drive_link" 
+                src="public/IMG_20230310_065541.jpg" 
                 alt="Mummadi Maheswar Reddy"
                 className="w-full h-full object-cover"
               />
