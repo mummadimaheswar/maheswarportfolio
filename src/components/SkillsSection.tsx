@@ -1,12 +1,9 @@
-
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Code, Terminal, GitBranch, ArrowRight } from 'lucide-react';
-import { Progress } from '@/components/ui/progress';
 
 interface Skill {
   name: string;
-  level: number;
   icon?: React.ReactNode;
 }
 
@@ -109,19 +106,11 @@ const SkillsSection = () => {
                 <h3 className="text-xl font-semibold">{category.title}</h3>
               </div>
               
-              <div className="space-y-5">
+              <div className="space-y-3">
                 {category.skills.map((skill) => (
-                  <div key={skill.name} className="group">
-                    <div className="flex justify-between items-center mb-2">
-                      <div className="flex items-center gap-2">
-                        {skill.icon && <span>{skill.icon}</span>}
-                        <span>{skill.name}</span>
-                      </div>
-                      <span className="text-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <Progress value={skill.level} className="h-2 group-hover:h-2.5 transition-all" />
+                  <div key={skill.name} className="flex items-center gap-2 text-sm">
+                    {skill.icon && <span>{skill.icon}</span>}
+                    <span>{skill.name}</span>
                   </div>
                 ))}
               </div>
@@ -146,3 +135,4 @@ const SkillsSection = () => {
 };
 
 export default SkillsSection;
+
