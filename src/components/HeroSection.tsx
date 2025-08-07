@@ -31,7 +31,7 @@ const HeroSection = () => {
             
             <TypeWriter delay={0.5} className="inline-block">
               <h1 className="text-4xl md:text-6xl font-bold text-foreground">
-          MUMMADI MAHESWAR REDDY
+            MUMMADI MAHESWAR REDDY
               </h1>
             </TypeWriter>
           </div>
