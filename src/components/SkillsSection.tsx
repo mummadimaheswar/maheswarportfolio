@@ -51,8 +51,8 @@ const skillCategories: SkillCategory[] = [
     skills: [
       { name: "Google Colab"},
       { name: "VS Code" },
-      { name: "Git", icon: <GitBranch className="w-4 h-4" /> },
-      { name: "Docker", icon: <Code className="w-4 h-4" /> },
+      { name: "Git" },
+      { name: "Docker" },
     ],
   },
   {
