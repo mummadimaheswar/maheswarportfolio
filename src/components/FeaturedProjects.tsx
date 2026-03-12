@@ -30,8 +30,8 @@ const projects: Project[] = [
       'JavaScript',
     ],
     image: '/* REPLACE_WITH_PROJECT_IMAGE_PATH */',
-    liveUrl: '/* REPLACE_WITH_LIVE_URL */',
-    githubUrl: '/* REPLACE_WITH_GITHUB_URL */',
+    liveUrl: 'https://smartirrigationweatherprediction.streamlit.app/',
+    githubUrl: 'https://github.com/mummadimaheswar/smart_irrigation_weatherprediction',
     highlights: [
       'RAG pipeline with domain-specific agricultural docs',
       'Predictive irrigation logic from environmental signals',
@@ -121,7 +121,7 @@ function TiltImage({
   return (
     <div ref={containerRef} className="tilt-container w-full">
       <div
-        className="tilt-inner relative overflow-hidden border border-white/10 group"
+        className="tilt-inner relative overflow-hidden border border-gray-200 dark:border-white/10 group"
         style={{ transform }}
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
@@ -189,21 +189,21 @@ function ProjectBlock({
       {/* Right / Left: Content */}
       <div className={isReversed ? 'lg:order-1' : 'lg:order-2'}>
         {/* Project number */}
-        <p className="text-xs font-mono text-[#00F0FF]/40 uppercase tracking-[0.3em] mb-4">
+        <p className="text-xs font-mono text-[#0891B2]/40 dark:text-[#00F0FF]/40 uppercase tracking-[0.3em] mb-4">
           {'// project_0' + (index + 1)}
         </p>
 
         {/* Title */}
-        <h3 className="text-3xl md:text-4xl lg:text-5xl font-inter font-black uppercase text-white mb-2">
+        <h3 className="text-3xl md:text-4xl lg:text-5xl font-inter font-black uppercase text-gray-900 dark:text-white mb-2">
           {project.title}
         </h3>
-        <p className="text-sm md:text-base text-white/50 font-inter mb-6">
+        <p className="text-sm md:text-base text-gray-500 dark:text-white/50 font-inter mb-6">
           {project.subtitle}
         </p>
 
         {/* Description card */}
         <div className="glass-card p-6 mb-6">
-          <p className="text-sm text-white/60 leading-relaxed">
+          <p className="text-sm text-gray-500 dark:text-white/60 leading-relaxed">
             {project.description}
           </p>
         </div>
@@ -213,9 +213,9 @@ function ProjectBlock({
           {project.highlights.map((h, i) => (
             <li
               key={i}
-              className="text-sm text-white/40 flex items-center gap-2"
+              className="text-sm text-gray-500 dark:text-white/40 flex items-center gap-2"
             >
-              <span className="w-1.5 h-1.5 bg-[#00F0FF]" />
+              <span className="w-1.5 h-1.5 bg-[#0891B2] dark:bg-[#00F0FF]" />
               {h}
             </li>
           ))}
@@ -236,7 +236,7 @@ function ProjectBlock({
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 px-6 py-3 bg-[#00F0FF] text-black font-mono font-bold text-xs uppercase tracking-[0.15em] transition-all duration-300 hover:shadow-[0_0_40px_8px_rgba(0,240,255,0.3)]"
+            className="group inline-flex items-center gap-2 px-6 py-3 bg-[#0891B2] dark:bg-[#00F0FF] text-white dark:text-black font-mono font-bold text-xs uppercase tracking-[0.15em] transition-all duration-300 hover:shadow-[0_0_40px_8px_rgba(0,240,255,0.3)]"
           >
             Live Demo
             <ExternalLink className="w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -245,7 +245,7 @@ function ProjectBlock({
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white font-mono text-xs uppercase tracking-[0.15em] transition-all duration-300 hover:border-[#00F0FF] hover:text-[#00F0FF] hover:shadow-[0_0_30px_4px_rgba(0,240,255,0.1)]"
+            className="group inline-flex items-center gap-2 px-6 py-3 border border-gray-300 dark:border-white/20 text-gray-700 dark:text-white font-mono text-xs uppercase tracking-[0.15em] transition-all duration-300 hover:border-[#0891B2] dark:hover:border-[#00F0FF] hover:text-[#0891B2] dark:hover:text-[#00F0FF]"
           >
             GitHub
             <Github className="w-3.5 h-3.5" />
@@ -264,7 +264,7 @@ export default function FeaturedProjects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="relative section-padding bg-[#080808]/70 backdrop-blur-sm"
+      className="relative section-padding bg-white/70 dark:bg-[#080808]/70 backdrop-blur-sm"
     >
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
@@ -274,11 +274,11 @@ export default function FeaturedProjects() {
           transition={{ duration: 0.7 }}
           className="mb-16 md:mb-24"
         >
-          <p className="text-xs font-mono text-[#00F0FF]/60 uppercase tracking-[0.3em] mb-4">
+          <p className="text-xs font-mono text-[#0891B2]/60 dark:text-[#00F0FF]/60 uppercase tracking-[0.3em] mb-4">
             {'// featured work'}
           </p>
-          <h2 className="text-3xl md:text-5xl font-inter font-black uppercase text-white">
-            Featured <span className="text-[#00F0FF]">Projects</span>
+          <h2 className="text-3xl md:text-5xl font-inter font-black uppercase text-gray-900 dark:text-white">
+            Featured <span className="text-[#0891B2] dark:text-[#00F0FF]">Projects</span>
           </h2>
         </motion.div>
 

@@ -56,6 +56,29 @@
     --input: 0 0% 15%;
     --ring: 186 100% 50%;
   }
+
+  .light {
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 186 100% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 93%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 20% 93%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 186 100% 35%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 86%;
+    --input: 214 32% 86%;
+    --ring: 186 100% 35%;
+    --cyan: #0891B2;
+  }
 }
 
 @layer base {
@@ -66,9 +89,16 @@
     @apply bg-[#080808] text-white font-inter antialiased;
     overflow-x: hidden;
   }
+  .light body {
+    @apply bg-[#f5f7fa] text-gray-900;
+  }
   ::selection {
     background: rgba(0, 240, 255, 0.3);
     color: white;
+  }
+  .light ::selection {
+    background: rgba(8, 145, 178, 0.25);
+    color: black;
   }
 }
 
@@ -91,6 +121,15 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #00F0FF;
 }
+.light ::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+.light ::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+}
+.light ::-webkit-scrollbar-thumb:hover {
+  background: #0891B2;
+}
 
 /* ═══════════════════════════════════════════════════════
    BRUTALIST UTILITIES
@@ -102,6 +141,11 @@ html {
     linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 80px 80px;
+}
+.light .grid-overlay {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
 }
 
 /* Accent text - pure cyan */
@@ -129,6 +173,15 @@ html {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(0, 240, 255, 0.25);
   box-shadow: 0 0 40px rgba(0, 240, 255, 0.06);
+}
+.light .glass-card {
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+.light .glass-card:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(8, 145, 178, 0.35);
+  box-shadow: 0 0 40px rgba(8, 145, 178, 0.1);
 }
 
 /* Glow effects */
@@ -175,6 +228,16 @@ html {
   background: rgba(0, 240, 255, 0.08);
   box-shadow: 0 0 16px rgba(0, 240, 255, 0.2);
 }
+.light .tech-tag {
+  border-color: rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.6);
+}
+.light .tech-tag:hover {
+  border-color: #0891B2;
+  color: #0891B2;
+  background: rgba(8, 145, 178, 0.08);
+  box-shadow: 0 0 16px rgba(8, 145, 178, 0.15);
+}
 
 /* Timeline */
 .timeline-line {
@@ -184,6 +247,9 @@ html {
   bottom: 0;
   width: 1px;
   background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.2), #00F0FF, rgba(255, 255, 255, 0.2), transparent);
+}
+.light .timeline-line {
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.12), #0891B2, rgba(0, 0, 0, 0.12), transparent);
 }
 
 .timeline-dot {
@@ -210,6 +276,9 @@ html {
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
   border: none;
+}
+.light .brutalist-hr {
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
 }
 
 /* Noise overlay */

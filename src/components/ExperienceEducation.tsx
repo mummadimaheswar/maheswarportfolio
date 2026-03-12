@@ -159,7 +159,7 @@ function TimelineCard({
       }`}
     >
       {/* Timeline dot */}
-      <div className="hidden md:block absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-[#00F0FF] shadow-[0_0_16px_4px_rgba(0,240,255,0.4)] z-10" />
+      <div className="hidden md:block absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-[#0891B2] dark:bg-[#00F0FF] shadow-[0_0_16px_4px_rgba(0,240,255,0.4)] z-10" />
 
       {/* Card */}
       <motion.div
@@ -173,26 +173,26 @@ function TimelineCard({
         <div className="glass-card p-6 md:p-8 relative group">
           {/* Type indicator */}
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 flex items-center justify-center border border-[#00F0FF]/30 text-[#00F0FF]">
+            <div className="w-10 h-10 flex items-center justify-center border border-[#0891B2]/30 dark:border-[#00F0FF]/30 text-[#0891B2] dark:text-[#00F0FF]">
               {entry.type === 'experience' ? (
                 <Briefcase className="w-4 h-4" />
               ) : (
                 <GraduationCap className="w-4 h-4" />
               )}
             </div>
-            <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#00F0FF]/60">
+            <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#0891B2]/60 dark:text-[#00F0FF]/60">
               {entry.type}
             </span>
           </div>
 
           {/* Title */}
-          <h3 className="text-xl md:text-2xl font-inter font-bold text-white mb-2">
+          <h3 className="text-xl md:text-2xl font-inter font-bold text-gray-900 dark:text-white mb-2">
             {entry.title}
           </h3>
 
           {/* Organization & meta */}
-          <div className="flex flex-col gap-1 mb-4 text-sm text-white/40 font-mono">
-            <span className="text-white/60">{entry.organization}</span>
+          <div className="flex flex-col gap-1 mb-4 text-sm text-gray-500 dark:text-white/40 font-mono">
+            <span className="text-gray-600 dark:text-white/60">{entry.organization}</span>
             <div className="flex items-center gap-4">
               <span className="inline-flex items-center gap-1">
                 <MapPin className="w-3 h-3" />
@@ -206,16 +206,16 @@ function TimelineCard({
           </div>
 
           {/* Divider */}
-          <div className="h-px bg-white/10 mb-4" />
+          <div className="h-px bg-gray-200 dark:bg-white/10 mb-4" />
 
           {/* Description */}
           <ul className="space-y-3 mb-6">
             {entry.description.map((item, i) => (
               <li
                 key={i}
-                className="text-sm text-white/50 leading-relaxed flex gap-2"
+                className="text-sm text-gray-500 dark:text-white/50 leading-relaxed flex gap-2"
               >
-                <span className="text-[#00F0FF] mt-1 shrink-0">{'>'}</span>
+                <span className="text-[#0891B2] dark:text-[#00F0FF] mt-1 shrink-0">{'>'}</span>
                 {item}
               </li>
             ))}
@@ -243,7 +243,7 @@ export default function ExperienceEducation() {
     <section
       id="experience"
       ref={sectionRef}
-      className="relative section-padding bg-[#080808]/70 backdrop-blur-sm"
+      className="relative section-padding bg-white/70 dark:bg-[#080808]/70 backdrop-blur-sm"
     >
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
@@ -253,11 +253,11 @@ export default function ExperienceEducation() {
           transition={{ duration: 0.7 }}
           className="mb-16 md:mb-24"
         >
-          <p className="text-xs font-mono text-[#00F0FF]/60 uppercase tracking-[0.3em] mb-4">
+          <p className="text-xs font-mono text-[#0891B2]/60 dark:text-[#00F0FF]/60 uppercase tracking-[0.3em] mb-4">
             {'// experience & education'}
           </p>
-          <h2 className="text-3xl md:text-5xl font-inter font-black uppercase text-white">
-            My <span className="text-[#00F0FF]">Journey</span>
+          <h2 className="text-3xl md:text-5xl font-inter font-black uppercase text-gray-900 dark:text-white">
+            My <span className="text-[#0891B2] dark:text-[#00F0FF]">Journey</span>
           </h2>
         </motion.div>
 
@@ -273,16 +273,16 @@ export default function ExperienceEducation() {
 
         {/* Skills */}
         <div className="mt-6 md:mt-12">
-          <p className="text-xs font-mono text-[#00F0FF]/60 uppercase tracking-[0.3em] mb-4">
+          <p className="text-xs font-mono text-[#0891B2]/60 dark:text-[#00F0FF]/60 uppercase tracking-[0.3em] mb-4">
             {'// skills'}
           </p>
           <div className="glass-card p-6 md:p-8 space-y-5">
             {skillsData.map((skill) => (
               <div key={skill.category}>
-                <p className="text-sm md:text-base text-white font-semibold mb-1">
+                <p className="text-sm md:text-base text-gray-900 dark:text-white font-semibold mb-1">
                   {skill.category}
                 </p>
-                <p className="text-sm text-white/55 leading-relaxed">{skill.items}</p>
+                <p className="text-sm text-gray-500 dark:text-white/55 leading-relaxed">{skill.items}</p>
               </div>
             ))}
           </div>
@@ -290,27 +290,27 @@ export default function ExperienceEducation() {
 
         {/* Projects */}
         <div className="mt-8 md:mt-12">
-          <p className="text-xs font-mono text-[#00F0FF]/60 uppercase tracking-[0.3em] mb-4">
+          <p className="text-xs font-mono text-[#0891B2]/60 dark:text-[#00F0FF]/60 uppercase tracking-[0.3em] mb-4">
             {'// projects'}
           </p>
           <div className="space-y-6">
             {projectsData.map((project) => (
               <div key={project.title} className="glass-card p-6 md:p-8">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
-                  <h3 className="text-xl md:text-2xl font-inter font-bold text-white">
+                  <h3 className="text-xl md:text-2xl font-inter font-bold text-gray-900 dark:text-white">
                     {project.title}
                   </h3>
                   {project.period ? (
-                    <span className="text-xs font-mono text-white/40">{project.period}</span>
+                    <span className="text-xs font-mono text-gray-500 dark:text-white/40">{project.period}</span>
                   ) : null}
                 </div>
                 <ul className="space-y-3">
                   {project.description.map((item, index) => (
                     <li
                       key={index}
-                      className="text-sm text-white/50 leading-relaxed flex gap-2"
+                      className="text-sm text-gray-500 dark:text-white/50 leading-relaxed flex gap-2"
                     >
-                      <span className="text-[#00F0FF] mt-1 shrink-0">{'>'}</span>
+                      <span className="text-[#0891B2] dark:text-[#00F0FF] mt-1 shrink-0">{'>'}</span>
                       {item}
                     </li>
                   ))}
@@ -322,14 +322,14 @@ export default function ExperienceEducation() {
 
         {/* Certifications */}
         <div className="mt-8 md:mt-12">
-          <p className="text-xs font-mono text-[#00F0FF]/60 uppercase tracking-[0.3em] mb-4">
+          <p className="text-xs font-mono text-[#0891B2]/60 dark:text-[#00F0FF]/60 uppercase tracking-[0.3em] mb-4">
             {'// certifications'}
           </p>
           <div className="glass-card p-6 md:p-8">
             <ul className="space-y-3">
               {certifications.map((cert) => (
-                <li key={cert} className="text-sm text-white/55 leading-relaxed flex gap-2">
-                  <span className="text-[#00F0FF] mt-1 shrink-0">{'>'}</span>
+                <li key={cert} className="text-sm text-gray-500 dark:text-white/55 leading-relaxed flex gap-2">
+                  <span className="text-[#0891B2] dark:text-[#00F0FF] mt-1 shrink-0">{'>'}</span>
                   {cert}
                 </li>
               ))}

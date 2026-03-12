@@ -67,25 +67,25 @@ function PublicationCard({
 
       {/* Status badge */}
       <div className="flex items-center gap-3 mb-5">
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 border border-[#00F0FF]/30 text-[#00F0FF] text-[10px] font-mono uppercase tracking-[0.2em]">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 border border-[#0891B2]/30 dark:border-[#00F0FF]/30 text-[#0891B2] dark:text-[#00F0FF] text-[10px] font-mono uppercase tracking-[0.2em]">
           <Award className="w-3 h-3" />
           {pub.status}
         </span>
-        <span className="text-[10px] font-mono text-white/30 uppercase tracking-[0.2em]">
+        <span className="text-[10px] font-mono text-gray-400 dark:text-white/30 uppercase tracking-[0.2em]">
           {pub.conference}
         </span>
       </div>
 
       {/* Title */}
-      <h3 className="text-lg md:text-xl font-inter font-bold text-white mb-3 leading-tight">
+      <h3 className="text-lg md:text-xl font-inter font-bold text-gray-900 dark:text-white mb-3 leading-tight">
         {pub.title}
       </h3>
 
       {/* Authors */}
-      <p className="text-xs font-mono text-white/30 mb-4">{pub.authors}</p>
+      <p className="text-xs font-mono text-gray-400 dark:text-white/30 mb-4">{pub.authors}</p>
 
       {/* Description */}
-      <p className="text-sm text-white/45 leading-relaxed mb-6">
+      <p className="text-sm text-gray-500 dark:text-white/45 leading-relaxed mb-6">
         {pub.description}
       </p>
 
@@ -103,7 +103,7 @@ function PublicationCard({
         href={pub.paperUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 text-sm font-mono text-white/40 hover:text-[#00F0FF] transition-colors group/link"
+        className="inline-flex items-center gap-2 text-sm font-mono text-gray-500 dark:text-white/40 hover:text-[#0891B2] dark:hover:text-[#00F0FF] transition-colors group/link"
       >
         <FileText className="w-4 h-4" />
         View Paper
@@ -121,7 +121,7 @@ export default function Publications() {
     <section
       id="publications"
       ref={sectionRef}
-      className="relative section-padding bg-[#080808]/70 backdrop-blur-sm"
+      className="relative section-padding bg-white/70 dark:bg-[#080808]/70 backdrop-blur-sm"
     >
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
@@ -131,11 +131,11 @@ export default function Publications() {
           transition={{ duration: 0.7 }}
           className="mb-16 md:mb-20"
         >
-          <p className="text-xs font-mono text-[#00F0FF]/60 uppercase tracking-[0.3em] mb-4">
+          <p className="text-xs font-mono text-[#0891B2]/60 dark:text-[#00F0FF]/60 uppercase tracking-[0.3em] mb-4">
             {'// research & publications'}
           </p>
-          <h2 className="text-3xl md:text-5xl font-inter font-black uppercase text-white">
-            Published <span className="text-[#00F0FF]">Work</span>
+          <h2 className="text-3xl md:text-5xl font-inter font-black uppercase text-gray-900 dark:text-white">
+            Published <span className="text-[#0891B2] dark:text-[#00F0FF]">Work</span>
           </h2>
         </motion.div>
 

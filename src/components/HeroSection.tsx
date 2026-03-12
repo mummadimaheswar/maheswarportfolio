@@ -45,8 +45,8 @@ export default function HeroSection() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="mb-8"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 border border-white/10 text-xs font-mono uppercase tracking-[0.2em] text-white/60">
-              <span className="w-2 h-2 bg-[#00F0FF] animate-glow-pulse" />
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 border border-white/10 dark:border-white/10 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 dark:text-white/60">
+              <span className="w-2 h-2 bg-[#0891B2] dark:bg-[#00F0FF] animate-glow-pulse" />
               Available for Research & Collaborations
             </span>
           </motion.div>
@@ -56,11 +56,11 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-inter font-black uppercase leading-[0.9] tracking-tight text-white mb-6"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-inter font-black uppercase leading-[0.9] tracking-tight text-gray-900 dark:text-white mb-6"
           >
             Mummadi
             <br />
-            <span className="text-[#00F0FF]">Maheswar</span>
+            <span className="text-[#0891B2] dark:text-[#00F0FF]">Maheswar</span>
             <br />
             Reddy
           </motion.h1>
@@ -71,10 +71,10 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.7 }}
           >
-            <p className="text-base md:text-lg font-mono text-white/40 uppercase tracking-[0.3em] mb-4">
+            <p className="text-base md:text-lg font-mono text-gray-400 dark:text-white/40 uppercase tracking-[0.3em] mb-4">
               {'// role'}
             </p>
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-inter font-light text-white/90 tracking-wide">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-inter font-light text-gray-800 dark:text-white/90 tracking-wide">
               Generative AI & Machine Learning Engineer
             </h2>
           </motion.div>
@@ -84,7 +84,7 @@ export default function HeroSection() {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ delay: 0.9, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="my-8 md:my-10 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent origin-left"
+            className="my-8 md:my-10 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-white/20 to-transparent origin-left"
           />
 
           {/* Description */}
@@ -92,7 +92,7 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.1, duration: 0.8 }}
-            className="text-sm md:text-base text-white/50 font-inter leading-relaxed max-w-2xl mb-10"
+            className="text-sm md:text-base text-gray-500 dark:text-white/50 font-inter leading-relaxed max-w-2xl mb-10"
           >
             Building intelligent systems at the intersection of deep learning,
             NLP, and explainable AI. Passionate about research that bridges
@@ -109,7 +109,7 @@ export default function HeroSection() {
             {/* Primary CTA */}
             <a
               href="#projects"
-              className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#00F0FF] text-black font-mono font-bold text-sm uppercase tracking-[0.15em] overflow-hidden transition-all duration-300 hover:shadow-[0_0_50px_12px_rgba(0,240,255,0.35)]"
+              className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#0891B2] dark:bg-[#00F0FF] text-white dark:text-black font-mono font-bold text-sm uppercase tracking-[0.15em] overflow-hidden transition-all duration-300 hover:shadow-[0_0_50px_12px_rgba(0,240,255,0.35)]"
             >
               <span className="relative z-10 flex items-center gap-3">
                 View My Work
@@ -123,7 +123,7 @@ export default function HeroSection() {
               href="/* REPLACE_WITH_RESUME_URL */"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/20 text-white font-mono text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-[#00F0FF] hover:text-[#00F0FF] hover:shadow-[0_0_30px_4px_rgba(0,240,255,0.1)]"
+              className="group inline-flex items-center justify-center gap-3 px-8 py-4 border border-gray-300 dark:border-white/20 text-gray-700 dark:text-white font-mono text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-[#0891B2] dark:hover:border-[#00F0FF] hover:text-[#0891B2] dark:hover:text-[#00F0FF]"
             >
               View Resume
             </a>
@@ -140,7 +140,7 @@ export default function HeroSection() {
       >
         <a
           href="#experience"
-          className="flex flex-col items-center gap-2 text-white/30 hover:text-[#00F0FF] transition-colors"
+          className="flex flex-col items-center gap-2 text-gray-400 dark:text-white/30 hover:text-[#0891B2] dark:hover:text-[#00F0FF] transition-colors"
         >
           <span className="text-[10px] font-mono uppercase tracking-[0.3em]">
             Scroll

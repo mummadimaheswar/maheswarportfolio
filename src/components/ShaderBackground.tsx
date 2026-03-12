@@ -292,6 +292,8 @@ export default function ShaderBackground() {
       >
         <ShaderMesh />
       </Canvas>
+      {/* Light mode: brighten the shader so it works with light theme */}
+      <div className="absolute inset-0 bg-white/40 dark:bg-transparent pointer-events-none transition-colors duration-500" />
     </div>
   );
 }
