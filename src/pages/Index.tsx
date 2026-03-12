@@ -10,7 +10,7 @@ const ContactFooter = lazy(() => import('../components/ContactFooter'));
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-[#080808] overflow-x-hidden noise-overlay" id="home">
+    <div className="min-h-screen overflow-x-hidden noise-overlay" id="home">
       {/* Fixed GLSL shader background */}
       <ShaderBackground />
 
@@ -28,20 +28,15 @@ const Index = () => {
           </div>
         }
       >
-        {/* Dark overlay to fade out shader for content sections */}
+        {/* Content sections – semi-transparent so seascape shader shows through */}
         <div className="relative z-10">
-          {/* Gradient transition from shader to solid */}
-          <div className="h-32 bg-gradient-to-b from-transparent to-[#080808]" />
+          {/* Subtle grid overlay for texture */}
+          <div className="absolute inset-0 grid-overlay pointer-events-none" />
 
-          <div className="bg-[#080808] relative">
-            {/* Subtle grid overlay for texture */}
-            <div className="absolute inset-0 grid-overlay pointer-events-none" />
-
-            <ExperienceEducation />
-            <FeaturedProjects />
-            <Publications />
-            <ContactFooter />
-          </div>
+          <ExperienceEducation />
+          <FeaturedProjects />
+          <Publications />
+          <ContactFooter />
         </div>
       </Suspense>
     </div>

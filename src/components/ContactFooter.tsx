@@ -44,7 +44,7 @@ export default function ContactFooter() {
   };
 
   return (
-    <section id="contact" ref={sectionRef} className="relative">
+    <section id="contact" ref={sectionRef} className="relative bg-[#080808]/70 backdrop-blur-sm">
       {/* Top divider */}
       <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 

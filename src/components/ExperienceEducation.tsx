@@ -243,7 +243,7 @@ export default function ExperienceEducation() {
     <section
       id="experience"
       ref={sectionRef}
-      className="relative section-padding"
+      className="relative section-padding bg-[#080808]/70 backdrop-blur-sm"
     >
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
