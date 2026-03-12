@@ -3,18 +3,12 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
 /* ═══════════════════════════════════════════════════════════════════
-   NEURAL NETWORK / DATA FLOW GLSL SHADER
+   SEASCAPE GLSL SHADER BACKGROUND
 
-   A full-screen fragment shader that renders an animated neural
-   network-like particle field with flowing connections. Uses ONLY
-   black, white, and electric cyan (#00F0FF).
+   Based on "Seascape" by Alexander Alekseev (TDM), 2014.
+   Adapted with a dark cyan palette to match portfolio theme.
 
-   Reacts to mouse position for subtle interactive parallax.
-
-   ── HOW TO CUSTOMIZE ──
-   Replace the fragmentShader string below with any Shadertoy-style
-   GLSL code. The uniforms iTime, iResolution, and iMouse are
-   already wired up and match the Shadertoy convention.
+   Reacts to mouse position for camera control.
    ═══════════════════════════════════════════════════════════════════ */
 
 const vertexShader = `
@@ -25,7 +19,8 @@ const vertexShader = `
   }
 `;
 
-// Neural network data-flow shader
+// Seascape shader — based on "Seascape" by Alexander Alekseev (TDM), 2014
+// Adapted with dark cyan palette to match portfolio theme
 const fragmentShader = `
   precision highp float;
 
@@ -35,209 +30,190 @@ const fragmentShader = `
 
   varying vec2 vUv;
 
-  // ── Noise functions ──
-  float hash(vec2 p) {
-    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+  const int NUM_STEPS = 32;
+  const float PI = 3.141592;
+  const float EPSILON = 1e-3;
+  #define EPSILON_NRM (0.1 / iResolution.x)
+
+  // sea parameters
+  const int ITER_GEOMETRY = 3;
+  const int ITER_FRAGMENT = 5;
+  const float SEA_HEIGHT = 0.6;
+  const float SEA_CHOPPY = 4.0;
+  const float SEA_SPEED = 0.8;
+  const float SEA_FREQ = 0.16;
+  // Dark cyan-tinted base & water color to match #00F0FF theme
+  const vec3 SEA_BASE = vec3(0.0, 0.06, 0.12);
+  const vec3 SEA_WATER_COLOR = vec3(0.0, 0.55, 0.65);
+  #define SEA_TIME (1.0 + iTime * SEA_SPEED)
+  const mat2 octave_m = mat2(1.6, 1.2, -1.2, 1.6);
+
+  // math
+  mat3 fromEuler(vec3 ang) {
+    vec2 a1 = vec2(sin(ang.x), cos(ang.x));
+    vec2 a2 = vec2(sin(ang.y), cos(ang.y));
+    vec2 a3 = vec2(sin(ang.z), cos(ang.z));
+    mat3 m;
+    m[0] = vec3(a1.y*a3.y+a1.x*a2.x*a3.x, a1.y*a2.x*a3.x+a3.y*a1.x, -a2.y*a3.x);
+    m[1] = vec3(-a2.y*a1.x, a1.y*a2.y, a2.x);
+    m[2] = vec3(a3.y*a1.x*a2.x+a1.y*a3.x, a1.x*a3.x-a1.y*a3.y*a2.x, a2.y*a3.y);
+    return m;
   }
 
-  float noise(vec2 p) {
+  float hash(vec2 p) {
+    float h = dot(p, vec2(127.1, 311.7));
+    return fract(sin(h) * 43758.5453123);
+  }
+
+  float noise(in vec2 p) {
     vec2 i = floor(p);
     vec2 f = fract(p);
-    f = f * f * (3.0 - 2.0 * f);
-    float a = hash(i);
-    float b = hash(i + vec2(1.0, 0.0));
-    float c = hash(i + vec2(0.0, 1.0));
-    float d = hash(i + vec2(1.0, 1.0));
-    return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+    vec2 u = f * f * (3.0 - 2.0 * f);
+    return -1.0 + 2.0 * mix(
+      mix(hash(i + vec2(0.0, 0.0)), hash(i + vec2(1.0, 0.0)), u.x),
+      mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
   }
 
-  float fbm(vec2 p) {
-    float val = 0.0;
-    float amp = 0.5;
-    float freq = 1.0;
-    for (int i = 0; i < 5; i++) {
-      val += amp * noise(p * freq);
-      freq *= 2.0;
-      amp *= 0.5;
+  // lighting
+  float diffuse(vec3 n, vec3 l, float p) {
+    return pow(dot(n, l) * 0.4 + 0.6, p);
+  }
+
+  float specular(vec3 n, vec3 l, vec3 e, float s) {
+    float nrm = (s + 8.0) / (PI * 8.0);
+    return pow(max(dot(reflect(e, n), l), 0.0), s) * nrm;
+  }
+
+  // sky — dark gradient with subtle cyan glow
+  vec3 getSkyColor(vec3 e) {
+    e.y = (max(e.y, 0.0) * 0.8 + 0.2) * 0.8;
+    return vec3(0.0, pow(1.0 - e.y, 3.0) * 0.15, pow(1.0 - e.y, 2.0) * 0.25) * 1.4;
+  }
+
+  // sea octave
+  float sea_octave(vec2 uv, float choppy) {
+    uv += noise(uv);
+    vec2 wv = 1.0 - abs(sin(uv));
+    vec2 swv = abs(cos(uv));
+    wv = mix(wv, swv, wv);
+    return pow(1.0 - pow(wv.x * wv.y, 0.65), choppy);
+  }
+
+  float map(vec3 p) {
+    float freq = SEA_FREQ;
+    float amp = SEA_HEIGHT;
+    float choppy = SEA_CHOPPY;
+    vec2 uv = p.xz; uv.x *= 0.75;
+    float d, h = 0.0;
+    for (int i = 0; i < ITER_GEOMETRY; i++) {
+      d = sea_octave((uv + SEA_TIME) * freq, choppy);
+      d += sea_octave((uv - SEA_TIME) * freq, choppy);
+      h += d * amp;
+      uv *= octave_m; freq *= 1.9; amp *= 0.22;
+      choppy = mix(choppy, 1.0, 0.2);
     }
-    return val;
+    return p.y - h;
   }
 
-  // ── Neural node glow ──
-  float nodeGlow(vec2 uv, vec2 center, float radius) {
-    float d = length(uv - center);
-    return smoothstep(radius, 0.0, d) * exp(-d * 8.0);
+  float map_detailed(vec3 p) {
+    float freq = SEA_FREQ;
+    float amp = SEA_HEIGHT;
+    float choppy = SEA_CHOPPY;
+    vec2 uv = p.xz; uv.x *= 0.75;
+    float d, h = 0.0;
+    for (int i = 0; i < ITER_FRAGMENT; i++) {
+      d = sea_octave((uv + SEA_TIME) * freq, choppy);
+      d += sea_octave((uv - SEA_TIME) * freq, choppy);
+      h += d * amp;
+      uv *= octave_m; freq *= 1.9; amp *= 0.22;
+      choppy = mix(choppy, 1.0, 0.2);
+    }
+    return p.y - h;
   }
 
-  // ── Connection line between two points ──
-  float connectionLine(vec2 uv, vec2 a, vec2 b, float width) {
-    vec2 pa = uv - a;
-    vec2 ba = b - a;
-    float h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0);
-    float d = length(pa - ba * h);
-    return smoothstep(width, 0.0, d);
+  vec3 getSeaColor(vec3 p, vec3 n, vec3 l, vec3 eye, vec3 dist) {
+    float fresnel = clamp(1.0 - dot(n, -eye), 0.0, 1.0);
+    fresnel = min(fresnel * fresnel * fresnel, 0.5);
+    vec3 reflected = getSkyColor(reflect(eye, n));
+    vec3 refracted = SEA_BASE + diffuse(n, l, 80.0) * SEA_WATER_COLOR * 0.12;
+    vec3 color = mix(refracted, reflected, fresnel);
+    float atten = max(1.0 - dot(dist, dist) * 0.001, 0.0);
+    color += SEA_WATER_COLOR * (p.y - SEA_HEIGHT) * 0.18 * atten;
+    // Cyan-tinted specular highlights
+    color += vec3(0.0, 0.94, 1.0) * specular(n, l, eye, 600.0 * inversesqrt(dot(dist, dist))) * 0.6;
+    return color;
   }
 
-  // ── Data pulse along connection ──
-  float dataPulse(vec2 uv, vec2 a, vec2 b, float t, float speed) {
-    vec2 ba = b - a;
-    vec2 pa = uv - a;
-    float h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0);
-    float pulse = fract(h - t * speed);
-    pulse = exp(-pow(pulse - 0.5, 2.0) * 40.0);
-    float d = length(pa - ba * h);
-    return pulse * smoothstep(0.004, 0.0, d);
+  // tracing
+  vec3 getNormal(vec3 p, float eps) {
+    vec3 n;
+    n.y = map_detailed(p);
+    n.x = map_detailed(vec3(p.x + eps, p.y, p.z)) - n.y;
+    n.z = map_detailed(vec3(p.x, p.y, p.z + eps)) - n.y;
+    n.y = eps;
+    return normalize(n);
+  }
+
+  float heightMapTracing(vec3 ori, vec3 dir, out vec3 p) {
+    float tm = 0.0;
+    float tx = 1000.0;
+    float hx = map(ori + dir * tx);
+    if (hx > 0.0) {
+      p = ori + dir * tx;
+      return tx;
+    }
+    float hm = map(ori);
+    for (int i = 0; i < NUM_STEPS; i++) {
+      float tmid = mix(tm, tx, hm / (hm - hx));
+      p = ori + dir * tmid;
+      float hmid = map(p);
+      if (hmid < 0.0) {
+        tx = tmid;
+        hx = hmid;
+      } else {
+        tm = tmid;
+        hm = hmid;
+      }
+      if (abs(hmid) < EPSILON) break;
+    }
+    return mix(tm, tx, hm / (hm - hx));
+  }
+
+  vec3 getPixel(in vec2 coord, float time) {
+    vec2 uv = coord / iResolution.xy;
+    uv = uv * 2.0 - 1.0;
+    uv.x *= iResolution.x / iResolution.y;
+
+    // ray
+    vec3 ang = vec3(sin(time * 3.0) * 0.1, sin(time) * 0.2 + 0.3, time);
+    vec3 ori = vec3(0.0, 3.5, time * 5.0);
+    vec3 dir = normalize(vec3(uv.xy, -2.0));
+    dir.z += length(uv) * 0.14;
+    dir = normalize(dir) * fromEuler(ang);
+
+    // tracing
+    vec3 p;
+    heightMapTracing(ori, dir, p);
+    vec3 dist = p - ori;
+    vec3 n = getNormal(p, dot(dist, dist) * EPSILON_NRM);
+    vec3 light = normalize(vec3(0.0, 1.0, 0.8));
+
+    // color
+    return mix(
+      getSkyColor(dir),
+      getSeaColor(p, n, light, dir, dist),
+      pow(smoothstep(0.0, -0.02, dir.y), 0.2));
   }
 
   void main() {
-    vec2 uv = gl_FragCoord.xy / iResolution.xy;
-    vec2 aspect = vec2(iResolution.x / iResolution.y, 1.0);
-    vec2 uvA = uv * aspect;
+    float time = iTime * 0.3 + iMouse.x * 0.01;
+    vec3 color = getPixel(gl_FragCoord.xy, time);
 
-    // Mouse influence (normalized 0-1)
-    vec2 mouse = iMouse / iResolution;
-    vec2 mouseOffset = (mouse - 0.5) * 0.08;
+    // Darken overall to blend with dark portfolio background
+    color *= 0.85;
 
-    float t = iTime * 0.3;
-
-    // ── Background: deep black with subtle noise ──
-    float bgNoise = fbm(uv * 3.0 + t * 0.1) * 0.03;
-    vec3 col = vec3(bgNoise);
-
-    // ── Generate neural network nodes ──
-    // Layer 1 (input layer)
-    const int NODES_L1 = 5;
-    vec2 nodesL1[5];
-    nodesL1[0] = vec2(0.15, 0.15);
-    nodesL1[1] = vec2(0.15, 0.35);
-    nodesL1[2] = vec2(0.15, 0.50);
-    nodesL1[3] = vec2(0.15, 0.65);
-    nodesL1[4] = vec2(0.15, 0.85);
-
-    // Layer 2 (hidden layer 1)
-    const int NODES_L2 = 6;
-    vec2 nodesL2[6];
-    nodesL2[0] = vec2(0.38, 0.10);
-    nodesL2[1] = vec2(0.38, 0.27);
-    nodesL2[2] = vec2(0.38, 0.42);
-    nodesL2[3] = vec2(0.38, 0.57);
-    nodesL2[4] = vec2(0.38, 0.73);
-    nodesL2[5] = vec2(0.38, 0.90);
-
-    // Layer 3 (hidden layer 2)
-    const int NODES_L3 = 6;
-    vec2 nodesL3[6];
-    nodesL3[0] = vec2(0.62, 0.10);
-    nodesL3[1] = vec2(0.62, 0.27);
-    nodesL3[2] = vec2(0.62, 0.42);
-    nodesL3[3] = vec2(0.62, 0.57);
-    nodesL3[4] = vec2(0.62, 0.73);
-    nodesL3[5] = vec2(0.62, 0.90);
-
-    // Layer 4 (output layer)
-    const int NODES_L4 = 3;
-    vec2 nodesL4[3];
-    nodesL4[0] = vec2(0.85, 0.30);
-    nodesL4[1] = vec2(0.85, 0.50);
-    nodesL4[2] = vec2(0.85, 0.70);
-
-    // Apply mouse offset and subtle animation to all nodes
-    for (int i = 0; i < NODES_L1; i++) {
-      nodesL1[i] += mouseOffset + vec2(0.0, sin(t + float(i) * 1.3) * 0.015);
-    }
-    for (int i = 0; i < NODES_L2; i++) {
-      nodesL2[i] += mouseOffset * 0.8 + vec2(sin(t * 0.7 + float(i)) * 0.01, cos(t + float(i) * 0.9) * 0.012);
-    }
-    for (int i = 0; i < NODES_L3; i++) {
-      nodesL3[i] += mouseOffset * 0.6 + vec2(sin(t * 0.8 + float(i) * 1.1) * 0.01, cos(t * 0.6 + float(i)) * 0.012);
-    }
-    for (int i = 0; i < NODES_L4; i++) {
-      nodesL4[i] += mouseOffset * 0.4 + vec2(0.0, sin(t * 0.9 + float(i) * 1.5) * 0.015);
-    }
-
-    // ── Draw connections (L1 -> L2) ──
-    for (int i = 0; i < NODES_L1; i++) {
-      for (int j = 0; j < NODES_L2; j++) {
-        float line = connectionLine(uv, nodesL1[i], nodesL2[j], 0.001);
-        float pulse = dataPulse(uv, nodesL1[i], nodesL2[j], t, 0.4 + float(i) * 0.05);
-        col += vec3(0.08, 0.10, 0.12) * line * 0.4;
-        col += vec3(0.0, 0.94, 1.0) * pulse * 0.5;
-      }
-    }
-
-    // ── Draw connections (L2 -> L3) ──
-    for (int i = 0; i < NODES_L2; i++) {
-      for (int j = 0; j < NODES_L3; j++) {
-        float line = connectionLine(uv, nodesL2[i], nodesL3[j], 0.001);
-        float pulse = dataPulse(uv, nodesL2[i], nodesL3[j], t + 1.0, 0.35 + float(j) * 0.04);
-        col += vec3(0.08, 0.10, 0.12) * line * 0.35;
-        col += vec3(0.0, 0.94, 1.0) * pulse * 0.45;
-      }
-    }
-
-    // ── Draw connections (L3 -> L4) ──
-    for (int i = 0; i < NODES_L3; i++) {
-      for (int j = 0; j < NODES_L4; j++) {
-        float line = connectionLine(uv, nodesL3[i], nodesL4[j], 0.001);
-        float pulse = dataPulse(uv, nodesL3[i], nodesL4[j], t + 2.0, 0.45 + float(i) * 0.03);
-        col += vec3(0.08, 0.10, 0.12) * line * 0.35;
-        col += vec3(0.0, 0.94, 1.0) * pulse * 0.5;
-      }
-    }
-
-    // ── Draw nodes with glow ──
-    for (int i = 0; i < NODES_L1; i++) {
-      float glow = nodeGlow(uv, nodesL1[i], 0.02);
-      float pulse = 0.5 + 0.5 * sin(t * 2.0 + float(i) * 1.2);
-      col += vec3(0.0, 0.94, 1.0) * glow * (0.6 + pulse * 0.4);
-      col += vec3(1.0) * glow * glow * 0.3;
-    }
-    for (int i = 0; i < NODES_L2; i++) {
-      float glow = nodeGlow(uv, nodesL2[i], 0.018);
-      float pulse = 0.5 + 0.5 * sin(t * 2.0 + float(i) * 0.9 + 1.0);
-      col += vec3(0.0, 0.94, 1.0) * glow * (0.5 + pulse * 0.5);
-      col += vec3(1.0) * glow * glow * 0.25;
-    }
-    for (int i = 0; i < NODES_L3; i++) {
-      float glow = nodeGlow(uv, nodesL3[i], 0.018);
-      float pulse = 0.5 + 0.5 * sin(t * 2.0 + float(i) * 1.1 + 2.0);
-      col += vec3(0.0, 0.94, 1.0) * glow * (0.5 + pulse * 0.5);
-      col += vec3(1.0) * glow * glow * 0.25;
-    }
-    for (int i = 0; i < NODES_L4; i++) {
-      float glow = nodeGlow(uv, nodesL4[i], 0.022);
-      float pulse = 0.5 + 0.5 * sin(t * 2.0 + float(i) * 1.4 + 3.0);
-      col += vec3(0.0, 0.94, 1.0) * glow * (0.7 + pulse * 0.3);
-      col += vec3(1.0) * glow * glow * 0.35;
-    }
-
-    // ── Floating particles / data dust ──
-    for (int i = 0; i < 30; i++) {
-      float fi = float(i);
-      vec2 particlePos = vec2(
-        fract(hash(vec2(fi, 0.0)) + t * (0.02 + hash(vec2(fi, 1.0)) * 0.03)),
-        fract(hash(vec2(fi, 2.0)) + t * (0.01 + hash(vec2(fi, 3.0)) * 0.02))
-      );
-      particlePos += mouseOffset * (0.2 + hash(vec2(fi, 4.0)) * 0.3);
-      float size = 0.001 + hash(vec2(fi, 5.0)) * 0.002;
-      float brightness = 0.3 + 0.3 * sin(t * 3.0 + fi * 0.7);
-      float d = length(uv - particlePos);
-      float particle = smoothstep(size, 0.0, d);
-      col += vec3(0.0, 0.94, 1.0) * particle * brightness * 0.5;
-    }
-
-    // ── Subtle radial vignette ──
-    float vignette = 1.0 - smoothstep(0.3, 1.2, length(uv - 0.5) * 1.4);
-    col *= vignette;
-
-    // ── Film grain ──
-    float grain = hash(uv * iTime) * 0.02;
-    col += grain;
-
-    // Clamp output
-    col = clamp(col, 0.0, 1.0);
-
-    gl_FragColor = vec4(col, 1.0);
+    // post processing
+    gl_FragColor = vec4(pow(color, vec3(0.65)), 1.0);
   }
 `;
 
@@ -297,9 +273,9 @@ function ShaderMesh() {
 /**
  * ShaderBackground
  *
- * A fixed, full-viewport WebGL canvas that renders the neural
- * network GLSL shader. Mount this once in your layout; it sits
- * behind all other content via z-index.
+ * A fixed, full-viewport WebGL canvas that renders the seascape
+ * GLSL shader. Mount this once in your layout; it sits behind
+ * all other content via z-index.
  */
 export default function ShaderBackground() {
   return (

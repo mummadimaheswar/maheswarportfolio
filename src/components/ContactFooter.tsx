@@ -5,12 +5,12 @@ import { Github, Linkedin, Mail, Send, ArrowUpRight } from 'lucide-react';
 const socials = [
   {
     label: 'LinkedIn',
-    href: '/* REPLACE_WITH_LINKEDIN_URL */',
+    href: 'https://www.linkedin.com/in/mummadi-maheswar-reddy-011a032b9/',
     icon: Linkedin,
   },
   {
     label: 'GitHub',
-    href: '/* REPLACE_WITH_GITHUB_URL */',
+    href: 'https://github.com/mummadimaheswar/',
     icon: Github,
   },
   {
