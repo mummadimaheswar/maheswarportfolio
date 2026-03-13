@@ -12,12 +12,6 @@ interface TimelineEntry {
   tags: string[];
 }
 
-interface ProjectEntry {
-  title: string;
-  period: string;
-  description: string[];
-}
-
 const timelineData: TimelineEntry[] = [
   {
     type: 'experience',
@@ -80,53 +74,6 @@ const skillsData = [
   {
     category: 'Backend & Infrastructure',
     items: 'FastAPI | Database Design | CRUD Systems | Authentication Logic | PostgreSQL | Git',
-  },
-];
-
-const projectsData: ProjectEntry[] = [
-  {
-    title: 'AI-Based Smart Irrigation System with Weather API for Crop Guidance',
-    period: '2025 - 2026',
-    description: [
-      'Developed an AI-driven irrigation advisory platform integrating soil moisture sensor telemetry with external weather forecasting APIs to guide crop watering decisions.',
-      'Constructed a retrieval-augmented generation pipeline generating agronomy recommendations grounded in domain-specific agricultural documentation.',
-      'Formulated predictive irrigation logic analyzing environmental signals and contextual retrieval outputs to improve water-usage efficiency.',
-      'Organized environmental telemetry inside PostgreSQL relational storage enabling historical analysis and trend-driven irrigation planning.',
-      'Architected a modular Python backend processing layer enabling future integration of crop yield prediction and agricultural analytics models.',
-    ],
-  },
-  {
-    title: 'Multi-Agent RAG System for Travel, Health & Financial Planning',
-    period: '2025',
-    description: [
-      'Engineered a domain-isolated multi-agent LLM architecture enabling independent reasoning workflows across travel, healthcare, and financial advisory domains.',
-      'Integrated embedding-based vector retrieval with reranking algorithms to strengthen factual grounding and suppress hallucinated outputs.',
-      'Implemented citation tracking pipelines with schema-validated response generation producing structured API-consumable outputs.',
-      'Enforced strict input validation and safety constraints to mitigate prompt injection and malicious query manipulation.',
-      'Enabled scalable agent orchestration supporting multi-domain knowledge expansion and modular reasoning pipelines.',
-    ],
-  },
-  {
-    title: 'Hospital Management System (Full-Stack Healthcare Platform)',
-    period: '',
-    description: [
-      'Built a relational hospital management platform automating patient registration, appointment scheduling, doctor assignment, and billing operations.',
-      'Designed normalized SQL database schemas managing patient records, prescriptions, treatment histories, and administrative workflows.',
-      'Established secure authentication mechanisms with role-based access control protecting sensitive healthcare data.',
-      'Optimized database query execution and CRUD operations ensuring low-latency data retrieval under concurrent workloads.',
-      'Structured modular backend components supporting future integration of predictive analytics and AI-driven healthcare insights.',
-    ],
-  },
-  {
-    title: 'Image Captioning with Generative AI',
-    period: '',
-    description: [
-      'Developed an image captioning model combining CNN-based visual feature extraction with transformer-driven language generation.',
-      'Leveraged encoder-decoder architecture linking computer vision embeddings to natural language generation pipelines.',
-      'Trained the system using the Conceptual Captions dataset to improve semantic alignment between visual inputs and generated text.',
-      'Evaluated caption quality using BLEU and semantic similarity metrics to measure linguistic accuracy and contextual relevance.',
-      'Refined model performance through iterative hyperparameter tuning and dataset preprocessing to enhance caption coherence.',
-    ],
   },
 ];
 
@@ -279,38 +226,6 @@ export default function ExperienceEducation() {
                   {skill.category}
                 </p>
                 <p className="text-sm text-gray-500 dark:text-white/55 leading-relaxed">{skill.items}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Projects */}
-        <div className="mt-8 md:mt-12">
-          <p className="text-xs font-mono text-[#0891B2]/60 dark:text-[#00F0FF]/60 uppercase tracking-[0.3em] mb-4">
-            {'// projects'}
-          </p>
-          <div className="space-y-6">
-            {projectsData.map((project) => (
-              <div key={project.title} className="glass-card p-6 md:p-8">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
-                  <h3 className="text-xl md:text-2xl font-inter font-bold text-gray-900 dark:text-white">
-                    {project.title}
-                  </h3>
-                  {project.period ? (
-                    <span className="text-xs font-mono text-gray-500 dark:text-white/40">{project.period}</span>
-                  ) : null}
-                </div>
-                <ul className="space-y-3">
-                  {project.description.map((item, index) => (
-                    <li
-                      key={index}
-                      className="text-sm text-gray-500 dark:text-white/50 leading-relaxed flex gap-2"
-                    >
-                      <span className="text-[#0891B2] dark:text-[#00F0FF] mt-1 shrink-0">{'>'}</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
               </div>
             ))}
           </div>
