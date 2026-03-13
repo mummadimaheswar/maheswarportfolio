@@ -31,7 +31,7 @@ export default function HeroSection() {
         className="relative z-10 w-full h-full px-6 md:px-12"
       >
         {/* Glassmorphism card */}
-        <div className="glass-card h-full p-8 md:p-14 lg:p-20 relative overflow-auto flex flex-col justify-center">
+        <div className="glass-card h-full p-8 md:p-14 lg:p-20 relative overflow-auto flex flex-col justify-center items-center text-center">
           {/* Decorative corner accents */}
           <div className="absolute top-0 left-0 w-16 h-16 border-t border-l border-[#00F0FF]/30" />
           <div className="absolute top-0 right-0 w-16 h-16 border-t border-r border-[#00F0FF]/30" />
@@ -56,13 +56,9 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-inter font-black uppercase leading-[0.9] tracking-tight text-gray-900 dark:text-white mb-6"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-inter font-black uppercase leading-[1.1] tracking-tight text-gray-900 dark:text-white mb-6"
           >
-            Mummadi
-            <br />
-            <span className="text-[#0891B2] dark:text-[#00F0FF]">Maheswar</span>
-            <br />
-            Reddy
+            Mummadi <span className="text-[#0891B2] dark:text-[#00F0FF]">Maheswar</span> Reddy
           </motion.h1>
 
           {/* Role */}
@@ -70,6 +66,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.7 }}
+            className="flex flex-col items-center"
           >
             <p className="text-base md:text-lg font-mono text-gray-400 dark:text-white/40 uppercase tracking-[0.3em] mb-4">
               {'// role'}
@@ -84,7 +81,7 @@ export default function HeroSection() {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ delay: 0.9, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="my-8 md:my-10 h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-white/20 to-transparent origin-left"
+            className="my-8 md:my-10 w-full max-w-2xl h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-white/20 to-transparent origin-center"
           />
 
           {/* Description */}
@@ -92,7 +89,7 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.1, duration: 0.8 }}
-            className="text-sm md:text-base text-gray-500 dark:text-white/50 font-inter leading-relaxed max-w-2xl mb-10"
+            className="text-sm md:text-base text-gray-500 dark:text-white/50 font-inter leading-relaxed max-w-2xl mx-auto mb-10"
           >
             Building intelligent systems at the intersection of deep learning,
             NLP, and explainable AI. Passionate about research that bridges
@@ -104,7 +101,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.3, duration: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-col sm:flex-row justify-center items-center gap-4"
           >
             {/* Primary CTA */}
             <a
@@ -120,7 +117,7 @@ export default function HeroSection() {
 
             {/* Secondary CTA */}
             <a
-              href="/* REPLACE_WITH_RESUME_URL */"
+              href="https://drive.google.com/file/d/1JNRq-MY8_Lo8cld9us-pssKseIOsV2OE/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center justify-center gap-3 px-8 py-4 border border-gray-300 dark:border-white/20 text-gray-700 dark:text-white font-mono text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-[#0891B2] dark:hover:border-[#00F0FF] hover:text-[#0891B2] dark:hover:text-[#00F0FF]"
