@@ -17,7 +17,7 @@ const publications: Publication[] = [
   {
     title:
       'AI-Based Smart Irrigation System with Weather API Integration for Precision Crop Guidance',
-    conference: 'IEEE ICCCNT 2026',
+    conference: 'ICICST 2026',
     year: '2026',
     status: 'Selected',
     authors: '/* REPLACE_WITH_AUTHORS */',
@@ -25,18 +25,6 @@ const publications: Publication[] = [
       'Proposes an AI-driven irrigation advisory platform integrating soil moisture sensor telemetry with weather forecasting APIs and a retrieval-augmented generation pipeline to deliver context-aware, domain-grounded crop watering recommendations.',
     paperUrl: '/* REPLACE_WITH_PAPER_URL */',
     tags: ['RAG', 'ChatGPT API', 'Weather API', 'Agriculture'],
-  },
-  {
-    title:
-      'Generative AI Approaches to Automated Image Captioning with Vision-Language Models',
-    conference: 'ICICST 2026',
-    year: '2026',
-    status: 'Selected',
-    authors: '/* REPLACE_WITH_AUTHORS */',
-    description:
-      'Presents an end-to-end generative AI pipeline leveraging vision-language models to produce accurate, context-rich image descriptions, demonstrating improved captioning quality across diverse visual domains.',
-    paperUrl: '/* REPLACE_WITH_PAPER_URL */',
-    tags: ['Generative AI', 'Computer Vision', 'NLP', 'Deep Learning'],
   },
 ];
 

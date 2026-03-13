@@ -59,10 +59,6 @@ const skillsData = [
       'Large Language Models (LLMs) | Transformer Architecture | Self-Attention & Multi-Head Attention | Retrieval-Augmented Generation (RAG) | Prompt Engineering | Embeddings | TF-IDF | BM25 | Hybrid Retrieval | Multi-Agent Architectures',
   },
   {
-    category: 'Cloud & Enterprise Platforms',
-    items: 'SAP | S/4HANA | SAP Business Technology Platform (BTP) | SAP Fiori',
-  },
-  {
     category: 'Prompt Engineering',
     items:
       'Zero-Shot, Few-Shot & Chain-of-Thought Prompting | Instruction-Tuned Prompt Design | Role-Based & System Prompt Structuring | Context Window Optimization | Prompt Decomposition & Task Chaining | Retrieval-Grounded Prompt Construction | Hallucination Mitigation Strategies',

@@ -17,10 +17,10 @@ interface Project {
 const projects: Project[] = [
   {
     id: 'smart-irrigation',
-    title: 'Smart Irrigation',
-    subtitle: 'AI-Based Smart Irrigation System with Weather API for Crop Guidance',
+    title: 'AI-Based Smart Irrigation System with Weather API for Crop Guidance',
+    subtitle: '2025 - 2026',
     description:
-      'An AI-driven irrigation advisory platform integrating soil moisture sensor telemetry with external weather forecasting APIs to guide crop watering decisions. Features a retrieval-augmented generation pipeline generating agronomy recommendations grounded in domain-specific agricultural documentation.',
+      'Developed an AI-driven irrigation advisory platform integrating soil moisture sensor telemetry with external weather forecasting APIs to guide crop watering decisions. Constructed a retrieval-augmented generation pipeline generating agronomy recommendations grounded in domain-specific agricultural documentation.',
     tags: [
       'ChatGPT API',
       'RAG',
@@ -33,10 +33,61 @@ const projects: Project[] = [
     liveUrl: 'https://smartirrigationweatherprediction.streamlit.app/',
     githubUrl: 'https://github.com/mummadimaheswar/smart_irrigation_weatherprediction',
     highlights: [
-      'RAG pipeline with domain-specific agricultural docs',
-      'Predictive irrigation logic from environmental signals',
-      'PostgreSQL storage for historical analysis & trend planning',
-      'Modular backend for crop yield prediction integration',
+      'AI-driven irrigation advisory integrating soil moisture telemetry with weather forecasting APIs',
+      'RAG pipeline generating agronomy recommendations from domain-specific agricultural documentation',
+      'Predictive irrigation logic analyzing environmental signals to improve water-usage efficiency',
+      'PostgreSQL storage for historical telemetry analysis and trend-driven irrigation planning',
+      'Modular Python backend enabling future integration of crop yield prediction and analytics models',
+    ],
+  },
+  {
+    id: 'hospital-management',
+    title: 'Hospital Management System',
+    subtitle: 'Hospital Management System (Full-Stack Healthcare Platform)',
+    description:
+      'Built a relational hospital management platform automating patient registration, appointment scheduling, doctor assignment, and billing operations. Designed normalized SQL database schemas managing patient records, prescriptions, treatment histories, and administrative workflows.',
+    tags: [
+      'PostgreSQL',
+      'SQL',
+      'Authentication',
+      'RBAC',
+      'Backend',
+      'Full-Stack',
+    ],
+    image: '/* REPLACE_WITH_PROJECT_IMAGE_PATH */',
+    liveUrl: '#',
+    githubUrl: '#',
+    highlights: [
+      'Automated patient registration, appointment scheduling, doctor assignment, and billing',
+      'Normalized SQL database schemas for patient records, prescriptions, and treatment histories',
+      'Secure authentication with role-based access control protecting sensitive healthcare data',
+      'Optimized database query execution ensuring low-latency data retrieval under concurrent workloads',
+      'Modular backend components supporting future predictive analytics and AI-driven healthcare insights',
+    ],
+  },
+  {
+    id: 'multi-agent-rag',
+    title: 'Multi-Agent RAG System',
+    subtitle: 'Multi-Agent RAG System for Travel, Health & Financial Planning',
+    description:
+      'Engineered a domain-isolated multi-agent LLM architecture enabling independent reasoning workflows across travel, healthcare, and financial advisory domains. Integrated embedding-based vector retrieval with reranking algorithms to strengthen factual grounding and suppress hallucinated outputs.',
+    tags: [
+      'LLM',
+      'RAG',
+      'Multi-Agent',
+      'Vector Retrieval',
+      'Python',
+      'API',
+    ],
+    image: '/* REPLACE_WITH_PROJECT_IMAGE_PATH */',
+    liveUrl: '#',
+    githubUrl: '#',
+    highlights: [
+      'Domain-isolated multi-agent LLM architecture across travel, healthcare, and financial domains',
+      'Embedding-based vector retrieval with reranking to suppress hallucinated outputs',
+      'Citation tracking pipelines with schema-validated, API-consumable response generation',
+      'Strict input validation and safety constraints to mitigate prompt injection attacks',
+      'Scalable agent orchestration supporting multi-domain knowledge expansion and modular reasoning',
     ],
   },
   {
@@ -54,7 +105,7 @@ const projects: Project[] = [
     ],
     image: '/* REPLACE_WITH_PROJECT_IMAGE_PATH */',
     liveUrl: '/* REPLACE_WITH_LIVE_URL */',
-    githubUrl: '/* REPLACE_WITH_GITHUB_URL */',
+    githubUrl: 'https://github.com/mummadimaheswar/transformer',
     highlights: [
       'End-to-end generative AI captioning pipeline',
       'Vision-language model integration',
@@ -76,7 +127,7 @@ const projects: Project[] = [
     ],
     image: '/* REPLACE_WITH_PROJECT_IMAGE_PATH */',
     liveUrl: '/* REPLACE_WITH_LIVE_URL */',
-    githubUrl: '/* REPLACE_WITH_GITHUB_URL */',
+    githubUrl: 'https://github.com/mummadimaheswar/sentiment_analysis',
     highlights: [
       'High-accuracy sentiment classification',
       'Trained on diverse, multi-domain datasets',

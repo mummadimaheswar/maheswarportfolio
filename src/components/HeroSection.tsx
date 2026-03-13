@@ -23,15 +23,15 @@ export default function HeroSection() {
     <section
       id="hero"
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative h-screen overflow-hidden"
     >
       {/* ── Content ── */}
       <motion.div
         style={{ y, opacity }}
-        className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12"
+        className="relative z-10 w-full h-full px-6 md:px-12"
       >
         {/* Glassmorphism card */}
-        <div className="glass-card p-8 md:p-14 lg:p-20 relative overflow-hidden">
+        <div className="glass-card h-full p-8 md:p-14 lg:p-20 relative overflow-auto flex flex-col justify-center">
           {/* Decorative corner accents */}
           <div className="absolute top-0 left-0 w-16 h-16 border-t border-l border-[#00F0FF]/30" />
           <div className="absolute top-0 right-0 w-16 h-16 border-t border-r border-[#00F0FF]/30" />
