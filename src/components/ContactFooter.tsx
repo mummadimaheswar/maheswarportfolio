@@ -14,7 +14,7 @@ const socials = [
     icon: Github,
   },
   {
-    label: 'Email',
+    label: 'mummadimahesh12@gmail.com',
     href: 'mailto:mummadimahesh12@gmail.com',
     icon: Mail,
   },
@@ -34,7 +34,14 @@ export default function ContactFooter() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
-    // TODO: Replace with real form submission (e.g., EmailJS, Formspree, or custom API)
+    
+    // Construct the mailto link with form data preserving format
+    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
+    window.location.href = `mailto:mummadimahesh12@gmail.com?subject=${subject}&body=${body}`;
+
     setTimeout(() => {
       setSending(false);
       setSent(true);
