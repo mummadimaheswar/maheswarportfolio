@@ -114,8 +114,8 @@ const projects: Project[] = [
   },
   {
     id: 'sentiment-analysis',
-    title: 'Sentiment Analysis',
-    subtitle: 'Sentiment Analysis Project',
+    title: 'Multimodal Sentiment Fusion',
+    subtitle: 'Multimodal Sentiment Fusion',
     description:
       'A machine learning model engineered to analyze text sentiment with high accuracy, trained on diverse datasets. Applies NLP techniques and data science workflows to extract meaningful insights from unstructured text data.',
     tags: [
@@ -126,7 +126,7 @@ const projects: Project[] = [
       'Scikit-learn',
     ],
     image: '/* REPLACE_WITH_PROJECT_IMAGE_PATH */',
-    liveUrl: '/* REPLACE_WITH_LIVE_URL */',
+    liveUrl: 'https://sentimental---analysis.streamlit.app/',
     githubUrl: 'https://github.com/mummadimaheswar/sentiment_analysis',
     highlights: [
       'High-accuracy sentiment classification',

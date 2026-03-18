@@ -34,7 +34,7 @@ const achievements: Achievement[] = [
     tags: ["Generative AI", "Deep Learning", "Python"]
   },
   {
-    title: "Sentiment Analysis Project",
+    title: "Multimodal Sentiment Fusion",
     date: "Oct 2024",
     description: "Built a machine learning model to analyze text sentiment with high accuracy, trained on diverse datasets.",
     icon: <Star size={18} />,
