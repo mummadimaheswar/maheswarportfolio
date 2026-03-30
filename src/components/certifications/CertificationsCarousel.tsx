@@ -170,16 +170,13 @@ function CertificateCard({
       onMouseLeave={() => setIsHovered(false)}
     >
       <motion.div
-        className="relative h-full rounded-2xl p-6 overflow-hidden cursor-pointer group"
+        className="relative h-full rounded-2xl p-6 overflow-hidden cursor-pointer group bg-white dark:bg-white/5 shadow-lg dark:shadow-none border border-gray-200 dark:border-transparent"
         style={{
-          background: `linear-gradient(135deg, ${cert.color}15, transparent, ${cert.color}08)`,
-          border: `1px solid ${cert.color}30`,
           transformStyle: 'preserve-3d',
         }}
         whileHover={{
           scale: 1.02,
-          boxShadow: `0 25px 50px -12px ${cert.color}30, 0 0 40px ${cert.color}20`,
-          borderColor: cert.color,
+          boxShadow: `0 25px 50px -12px ${cert.color}40, 0 0 40px ${cert.color}25`,
         }}
         transition={{ duration: 0.3 }}
       >
@@ -214,18 +211,18 @@ function CertificateCard({
         </div>
 
         {/* Title */}
-        <h3 className="text-lg font-bold mb-2 text-white group-hover:text-primary transition-colors">
+        <h3 className="text-lg font-bold mb-2 text-gray-800 dark:text-white transition-colors">
           {cert.title}
         </h3>
 
         {/* Duration */}
-        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+        <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-3">
           <Calendar size={14} />
           <span>{cert.duration}</span>
         </div>
 
         {/* Description */}
-        <p className="text-sm text-muted-foreground mb-6 line-clamp-2">
+        <p className="text-sm text-gray-700 dark:text-gray-400 mb-6 line-clamp-2">
           {cert.description}
         </p>
 
@@ -284,9 +281,9 @@ export default function CertificationsCarousel() {
     <div ref={containerRef} className="relative">
       {/* Scroll progress indicator */}
       <div className="flex justify-center mb-8">
-        <div className="w-48 h-1 bg-muted rounded-full overflow-hidden">
+        <div className="w-48 h-1 bg-gray-200 dark:bg-muted rounded-full overflow-hidden">
           <motion.div
-            className="h-full bg-gradient-to-r from-primary to-purple-500 rounded-full"
+            className="h-full bg-gradient-to-r from-purple-600 to-purple-400 dark:from-primary dark:to-purple-500 rounded-full"
             style={{ scaleX: scrollXProgress, transformOrigin: 'left' }}
           />
         </div>
@@ -318,12 +315,12 @@ export default function CertificationsCarousel() {
       </div>
 
       {/* Gradient fade edges */}
-      <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
-      <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
+      <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white dark:from-background to-transparent pointer-events-none z-10" />
+      <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white dark:from-background to-transparent pointer-events-none z-10" />
 
       {/* Scroll hint */}
       <motion.div
-        className="flex justify-center mt-4 text-muted-foreground text-sm"
+        className="flex justify-center mt-4 text-gray-500 dark:text-muted-foreground text-sm"
         initial={{ opacity: 1 }}
         animate={{ opacity: [1, 0.5, 1] }}
         transition={{ duration: 2, repeat: Infinity }}

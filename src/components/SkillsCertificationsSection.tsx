@@ -99,17 +99,17 @@ export default function SkillsCertificationsSection() {
             className="text-center mb-12"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 mb-6">
-              <Sparkles size={16} className="text-green-400" />
-              <span className="text-sm font-medium text-green-400">Interactive Experience</span>
+              <Sparkles size={16} className="text-green-600 dark:text-green-400" />
+              <span className="text-sm font-medium text-green-600 dark:text-green-400">Interactive Experience</span>
             </div>
 
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-white via-green-200 to-green-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-gray-900 via-green-600 to-green-500 dark:from-white dark:via-green-200 dark:to-green-400 bg-clip-text text-transparent">
                 Technical Skills
               </span>
             </h2>
 
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
               {isMobile
                 ? 'Explore my technical expertise across AI, Machine Learning, and Software Development.'
                 : 'Drag and throw the skill circles to interact with my technical expertise. Each circle represents a core competency.'}
@@ -117,7 +117,7 @@ export default function SkillsCertificationsSection() {
 
             {!isMobile && (
               <motion.div
-                className="mt-6 flex items-center justify-center gap-2 text-sm text-green-400/70"
+                className="mt-6 flex items-center justify-center gap-2 text-sm text-green-600/70 dark:text-green-400/70"
                 animate={{ y: [0, 5, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
@@ -148,17 +148,17 @@ export default function SkillsCertificationsSection() {
             className="text-center mb-12"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-6">
-              <Award size={16} className="text-purple-400" />
-              <span className="text-sm font-medium text-purple-400">Verified Credentials</span>
+              <Award size={16} className="text-purple-500 dark:text-purple-400" />
+              <span className="text-sm font-medium text-purple-500 dark:text-purple-400">Verified Credentials</span>
             </div>
 
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-white via-purple-200 to-purple-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-gray-900 via-purple-600 to-purple-500 dark:from-white dark:via-purple-200 dark:to-purple-400 bg-clip-text text-transparent">
                 Certifications
               </span>
             </h2>
 
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
               Industry-recognized certifications from leading tech companies and educational platforms.
             </p>
           </motion.div>
