@@ -38,25 +38,12 @@ export default function HeroSection() {
           <div className="absolute bottom-0 left-0 w-16 h-16 border-b border-l border-[#00F0FF]/30" />
           <div className="absolute bottom-0 right-0 w-16 h-16 border-b border-r border-[#00F0FF]/30" />
 
-          {/* Status badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="mb-8"
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 border border-white/10 dark:border-white/10 text-xs font-mono uppercase tracking-[0.2em] text-gray-500 dark:text-white/60">
-              <span className="w-2 h-2 bg-[#0891B2] dark:bg-[#00F0FF] animate-glow-pulse" />
-              Available for Research & Collaborations
-            </span>
-          </motion.div>
-
           {/* Name - oversized brutalist typography */}
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-inter font-black uppercase leading-[1.1] tracking-tight text-gray-900 dark:text-white mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-inter font-black uppercase leading-[1.1] tracking-tight text-gray-900 dark:text-white mb-6"
           >
             Mummadi <span className="text-[#0891B2] dark:text-[#00F0FF]">Maheswar</span> Reddy
           </motion.h1>

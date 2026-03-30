@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
 import ShaderBackground from '../components/ShaderBackground';
 
+const SkillsCertificationsSection = lazy(() => import('../components/SkillsCertificationsSection'));
 const ExperienceEducation = lazy(() => import('../components/ExperienceEducation'));
 const FeaturedProjects = lazy(() => import('../components/FeaturedProjects'));
 const Publications = lazy(() => import('../components/Publications'));
@@ -34,6 +35,7 @@ const Index = () => {
           <div className="absolute inset-0 grid-overlay pointer-events-none" />
 
           <ExperienceEducation />
+          <SkillsCertificationsSection />
           <FeaturedProjects />
           <Publications />
           <ContactFooter />

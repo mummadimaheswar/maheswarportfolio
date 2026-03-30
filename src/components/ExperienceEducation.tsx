@@ -41,48 +41,6 @@ const timelineData: TimelineEntry[] = [
   },
 ];
 
-const skillsData = [
-  {
-    category: 'Python',
-    items:
-      'Object-Oriented Programming (OOP) | Data Structures Implementation (Lists, Dictionaries, Sets, Tuples) | Algorithms & Problem Solving | File Handling & Exception Handling | Functional Programming Concepts | Comprehensions & Iterators | Modular Code Design | Virtual Environments & Dependency Management',
-  },
-  {
-    category: 'Generative AI',
-    items:
-      'Large Language Models (LLMs) | Transformer Architecture | Self-Attention & Multi-Head Attention | Retrieval-Augmented Generation (RAG) | Prompt Engineering | Embeddings | TF-IDF | BM25 | Hybrid Retrieval | Multi-Agent Architectures',
-  },
-  {
-    category: 'Prompt Engineering',
-    items:
-      'Zero-Shot, Few-Shot & Chain-of-Thought Prompting | Instruction-Tuned Prompt Design | Role-Based & System Prompt Structuring | Context Window Optimization | Prompt Decomposition & Task Chaining | Retrieval-Grounded Prompt Construction | Hallucination Mitigation Strategies',
-  },
-  {
-    category: 'Deep learning',
-    items:
-      'Artificial Neural Networks (ANNs) | Forward & Backpropagation | Gradient Descent Variants (SGD, Adam) | Activation Functions (ReLU, Sigmoid, Tanh, Softmax) | Weight Initialization Techniques | Overfitting Mitigation (Dropout, Regularization, Early Stopping) | Batch Normalization | Convolutional Neural Networks (CNNs - Foundational Understanding) | Recurrent Neural Networks (RNNs - Conceptual) | Transformer-Based Architectures | PyTorch | TensorFlow',
-  },
-  {
-    category: 'Machine Learning',
-    items:
-      'Supervised Learning (Regression, Classification) | Unsupervised Learning (Clustering, Dimensionality Reduction) | Ensemble Learning (XGBoost, LightGBM, Bagging, Boosting) | Bias-Variance Tradeoff | Regularization (L1, L2) | Feature Engineering & Feature Selection | Model Evaluation (Cross-Validation, Confusion Matrix, Precision, Recall, F1-Score) | Loss Functions (MSE, Log Loss, Cross-Entropy) | Hyperparameter Optimization | Gradient-Based Optimization | Scikit-learn',
-  },
-  {
-    category: 'Data Engineering & Analytics',
-    items: 'Pandas | NumPy | Data Preprocessing | Statistical Analysis',
-  },
-  {
-    category: 'Backend & Infrastructure',
-    items: 'FastAPI | Database Design | CRUD Systems | Authentication Logic | PostgreSQL | Git',
-  },
-];
-
-const certifications = [
-  'AI Developer Professional Certificate - IBM Skills Network',
-  'Machine Learning Specialization - Stanford University & DeepLearning.AI',
-  'Retrieval-Augmented Generation (RAG) - DeepLearning.AI',
-];
-
 function TimelineCard({
   entry,
   index,
@@ -212,40 +170,6 @@ export default function ExperienceEducation() {
           {timelineData.map((entry, i) => (
             <TimelineCard key={i} entry={entry} index={i} />
           ))}
-        </div>
-
-        {/* Skills */}
-        <div className="mt-6 md:mt-12">
-          <p className="text-xs font-mono text-[#0891B2]/60 dark:text-[#00F0FF]/60 uppercase tracking-[0.3em] mb-4">
-            {'// skills'}
-          </p>
-          <div className="glass-card p-6 md:p-8 space-y-5">
-            {skillsData.map((skill) => (
-              <div key={skill.category}>
-                <p className="text-sm md:text-base text-gray-900 dark:text-white font-semibold mb-1">
-                  {skill.category}
-                </p>
-                <p className="text-sm text-gray-500 dark:text-white/55 leading-relaxed">{skill.items}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Certifications */}
-        <div className="mt-8 md:mt-12">
-          <p className="text-xs font-mono text-[#0891B2]/60 dark:text-[#00F0FF]/60 uppercase tracking-[0.3em] mb-4">
-            {'// certifications'}
-          </p>
-          <div className="glass-card p-6 md:p-8">
-            <ul className="space-y-3">
-              {certifications.map((cert) => (
-                <li key={cert} className="text-sm text-gray-500 dark:text-white/55 leading-relaxed flex gap-2">
-                  <span className="text-[#0891B2] dark:text-[#00F0FF] mt-1 shrink-0">{'>'}</span>
-                  {cert}
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
       </div>
     </section>
